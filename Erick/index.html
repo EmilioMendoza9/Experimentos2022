@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INICIO</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="./css/miEstilo.css">
+    
+</head>
+<body id="cuerpo" class="clearfix">
+    <header>
+        <!-- Menu de navegación PC -->
+        <nav class="navbar fixed-top justify-content-around p-2 bg-gradient bg-fuerte" id="menuPC">
+            <div class="col-2">
+                <img src="./img/LogoErickVerde.jpg" class="rounded-pill logo">
+            </div>
+            <div class="d-flex justify-content-around col-10">
+                <button class="btn bg-fuerte bg-transparent text-light negrita" id="btnMenu1PC"><h5>Inicio</h5></button>
+                <button class="btn bg-fuerte bg-transparent text-light negrita" id="btnMenu2PC"><h5>Acerca de mi</h5></button>
+                <button class="btn bg-fuerte bg-transparent text-light negrita" id="btnMenu3PC"><h5>Noticias</h5></button>
+                <button class="btn bg-fuerte bg-transparent text-light negrita" id="btnMenu4PC"><h5>Emprendimientos</h5></button>
+            </div>
+        </nav>
+        <!-- Menu de navegación Movil -->
+        <nav class="navbar fixed-top justify-content-center p-1 ps-0 pe-0 bg-gradient bg-fuerte visually-hidden" id="menuMovil">
+            <div class="d-flex justify-content-center col-5 mb-1">
+                <img src="./img/LogoErickVerde.jpg" class="rounded-pill logo">
+            </div>
+            <!-- Menu hamburgesa -->
+            <button class="btn text-light col-11" id="btnMenu" data-bs-toggle="collapse" href="#collapseMenu" role="button" aria-expanded="false" aria-controls="collapseMenu">
+                <h5 class="negrita">Menu</h5>
+            </button>
+            <div class="d-flex justify-content-center collapse container-fluid rounded-1 bg-gradient bg-claro">
+                <div class="collapse col-9" id="collapseMenu">
+                    <h5 class="text-center"><a class="text-dark text-decoration-none" id="btnMenu1Movil">Inicio</a></h5>
+                    <h5 class="text-center"><a class="text-dark text-decoration-none" id="btnMenu2Movil">Acerca de mi</a></h5>
+                    <h5 class="text-center"><a class="text-dark text-decoration-none" id="btnMenu3Movil">Noticias</a></h5>
+                    <h5 class="text-center"><a class="text-dark text-decoration-none" id="btnMenu4Movil">Emprendimientos</a></h5>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="content espacio-header-pc">
+        <section id="inicio" class="">
+            <!-- Contenedor del VIDEO -->
+            <div class="d-flex justify-content-center mt-5 mb-3 p-5 aparecerAnim">
+                <video controls autoplay class="video-present" onloadstart="this.volume=0.1">
+                    <source src="./source/video/inicio.mp4" type="video/mp4">
+                </video>    
+            </div>
+            <!-- Contenedor del NOMBRE-->
+            <div class="d-flex justify-content-center mt-2">
+                <div class="col-6 col-md-5">
+                    <h1 class="text-center negrita">ERICK IVAN AGUNDEZ CERVANTES</h1>
+                </div>
+            </div>
+        </section>
+        <section id="saber" class="">
+            <!-- fondo de que quieres saber sobre mi -->
+            <div class="bg-gradient bg-claro pt-5 pb-5 mt-5">
+                <!-- Encabezado -->
+                <div class="d-flex justify-content-center">
+                    <div class="col-8">
+                        <h3 class="text-center negrita">¿QUÉ QUIERES SABER SOBRE MÍ?</h3>
+                    </div>
+                </div>
+                <!-- Contenedor TABLA PC-->
+                <div class="d-flex justify-content-center pb-md-5" id="tabla-pc">
+                    <div class="col-7 mt-3">
+                        <div class="d-flex justify-content-center">
+                            <button class="col-3 p-2 border-1 border-secondary border-bottom-0 rounded-top bg-white negrita" id="tabMenuSaber1">Biografía</button>
+                            <button class="col-3 p-2 border-1 border-secondary border-bottom-0 rounded-top" id="tabMenuSaber2">Labor social</button>
+                            <button class="col-3 p-2 border-1 border-secondary border-bottom-0 rounded-top" id="tabMenuSaber3">Politica</button>
+                            <button class="col-3 p-2 border-1 border-secondary border-bottom-0 rounded-top" id="tabMenuSaber4">Negocios </button>
+                        </div>
+                        <div class="border border-secondary rounded p-3 pb-5 bg-white" id="tabContainerSaber1">
+                            <p class="text-justify">Nacido en la ciudad de la Paz Baja California Sur, desde temprana edad, Erick Iván, se vio inspirado por el movimiento, siendo impulsor y promotor en diferentes agrupaciones de grafiteros, free style, hip hop, así como diversas asociaciones civiles y de movimiento como: Unión Ac Fuerza, To2uno, Open Mic, Voluntad Sobre Ruedas entre otros, siendo miembro fundador la organización HumanEngine Car Club e impulsor de organizaciones de vehículos multimarcas.</p>
+                            <p class="text-justify">Desde temprana edad, se vio interesado por la actividad dentro de la sociedad civil, por lo cual se dedicó a promover al movimiento contracultural y los movimientos de los pueblos originarios para generar espacios de participación en todo tipo de actos cívicos y sociales, para proyectar el interés y participación de las y los jóvenes sudcalifornianos en los diversos espacios.</p>
+                            <p class="text-justify">Su récord académico lo inició en el jardín de niños  David Alfaro Siqueiros en la Paz y culminó en el jardín de niños María de los Ángeles Lizárraga en los Cabos, la educación primaria la inició en la primaria Idelfonso Green en los cabos y culminó en la escuela 20 de Noviembre en la Paz, continuando sus estudios en la secundaria Humberto Muñoz Zazueta, también conocida como secundaria No.5, Siguiendo su educación en la preparatoria en el centro de Bachillerato Tecnológico Industrial  y Servicios número 230, concluyendo sus estudios profesionales, en la licenciatura de Derecho, por la máxima casa de estudios, la Universidad Autónoma de Baja California Sur. Complementando sus estudios con la culminación de la Nivelación Pedagógica por la escuela Normal Superior de B.C.S, así como una maestría en Desarrollo Humano y Social por la Universidad Mundial, hoy en día cursando la Maestría en el Centro De Posgrado “Derecho Procesal Penal”.</p>
+                            <p class="text-justify">En el ámbito personal, contrajo nupcias con su ahora esposa la Sra. Bruma Esmeralda Peralta Cota, icono ejemplar y promotora del empoderamiento de la mujer en nuestra ciudad capital, siendo actualmente presidenta de la Asociación Civil, Mujeres Gratitud, A.C; En la actualidad, un ejemplo de solidez como pareja, e icono del ejemplo de complementación y compromiso del uno para el otro.</p>
+                            <p class="text-justify">Algunos de sus pasatiempos son practicar running, Trail running, yoga, reiki, salto en paracaídas, kayak, ciclismo de montaña y ruta. Todo ello, se enarbola con lo que representa Erick Iván, líder moral y promotor social incansable promotor de medicina tradicional, que día a día busca de la sociedad, para generar un futuro ecológicamente sostenible y congruente con los principios que rigen la madre tierra.</p>
+                        </div>
+                        <div class="border border-secondary rounded p-3 pb-5 bg-white visually-hidden" id="tabContainerSaber2">
+                            <p class="text-justify">En el año 2012 le otorgaron la distinción del galardón Premio Estatal de la Juventud en la categoría Labor Social, por la XIII Legislatura del Congreso del Estado de Baja California Sur.</p>
+                            <p class="text-justify">En el año 2013 fue propuesto para el Premio Nacional de la Juventud 2013 por la Sociedad de Historia Natural Niparajá en B.C.S, Cruz Roja Mexicana B.C.S, Patronato del Asilo de Ancianos San Vicente De Paúl de la Paz B.C.S, Heroico Cuerpo de Bomberos La Paz B.C.S., Comunidad oaxaqueña en el Estado de Baja California Sur, Asimismo en el mismo año propuesto para recibir el Premio Nacional Acción Voluntaria y Solidaria 2013 por el Centro Estatal de Salud y Adicciones de Baja California Sur.</p>
+                            <p class="text-justify">Desarrollando una de sus primeras pasiones que es servir a la sociedad, inspirado por sus ideales inició su trabajo como servidor público en el 2006, llegando a ostentar cargos a nivel Municipal, Estatal y Federal, en la institución como Unidad Mejora e Innovación Gubernamental, el Instituto Municipal de la Juventud del XIII Ayuntamiento de la Paz, Defensoría de oficio de Estado, Comisión Nacional de Áreas Naturales Protegidas, Asesor Jurídico del Primer regidor en XIV Ayuntamiento de la Paz y Jefe de Verificación y Vigilancia de la Procuraduría Federal del Consumidor en B.C.S, sumando un total de 14 años de experiencia en la administración pública en los 3 niveles de gobierno.</p>
+                        </div>
+                        <div class="border border-secondary rounded p-3 pb-5 bg-white visually-hidden" id="tabContainerSaber3">
+                            <p class="text-justify">En el ámbito político, desde septiembre del 2019 al 2021, Erick Iván, fue dirigente del Comité Directivo Municipal del Partido Verde Ecologista de México, en el Municipio de la Paz, y actualmente en el ámbito laboral tiene un despacho corporativo con profesionistas legales, fiscales y contables un claro ejemplo del trabajo y esfuerzo de superación ciudadana con honorabilidad, principios y moral intachable, y claro ejemplo de que con un trabajo constante, perseverancia y determinación, se puede lograr cualquier meta y propósito en la vida.</p>
+                            <p class="text-justify">Actualmente es Secretarío de Organización del Comité Ejecutivo Estatal del Partido Verde Ecologista de México en Baja California Sur.</p>
+                        </div>
+                        <div class="border border-secondary rounded p-3 pb-5 bg-white visually-hidden" id="tabContainerSaber4">
+                            Actualmente ofrece sus servicios como abogado en un despacho jurídico.
+                        </div>
+                    </div>
+                </div>
+                <!-- Contenedor TABLA movil-->
+                <div class="d-flex justify-content-center pb-5 visually-hidden" id="tabla-movil">
+                    <div class="col-12">
+                        <!-- Tab 1 -->
+                        <div class="d-flex justify-content-center pt-1">
+                            <button class="btn p-2 bg-fuerte bg-gradient col-4 w-100 border-top-0 border-start-0 border-end-0 border-bottom border-secondary rounded-bottom" data-bs-toggle="collapse" href="#collapseTab1" role="button" aria-expanded="false" aria-controls="collapseTab1">
+                                <h4 class="text-light negrita"> 
+                                    Biografía
+                                </h4>
+                            </button>
+                        </div>
+                        <!-- Tab contenedor 1 -->
+                        <div class="d-flex justify-content-center">
+                            <div class="collapse col-12 border border-secondary rounded p-3 pb-5 bg-white" id="collapseTab1">
+                                <p class="text-justify">Nacido en la ciudad de la Paz Baja California Sur, desde temprana edad, Erick Iván, se vio inspirado por el movimiento, siendo impulsor y promotor en diferentes agrupaciones de grafiteros, free style, hip hop, así como diversas asociaciones civiles y de movimiento como: Unión Ac Fuerza, To2uno, Open Mic, Voluntad Sobre Ruedas entre otros, siendo miembro fundador la organización HumanEngine Car Club e impulsor de organizaciones de vehículos multimarcas.</p>
+                                <p class="text-justify">Desde temprana edad, se vio interesado por la actividad dentro de la sociedad civil, por lo cual se dedicó a promover al movimiento contracultural y los movimientos de los pueblos originarios para generar espacios de participación en todo tipo de actos cívicos y sociales, para proyectar el interés y participación de las y los jóvenes sudcalifornianos en los diversos espacios.</p>
+                                <p class="text-justify">Su récord académico lo inició en el jardín de niños  David Alfaro Siqueiros en la Paz y culminó en el jardín de niños María de los Ángeles Lizárraga en los Cabos, la educación primaria la inició en la primaria Idelfonso Green en los cabos y culminó en la escuela 20 de Noviembre en la Paz, continuando sus estudios en la secundaria Humberto Muñoz Zazueta, también conocida como secundaria No.5, Siguiendo su educación en la preparatoria en el centro de Bachillerato Tecnológico Industrial  y Servicios número 230, concluyendo sus estudios profesionales, en la licenciatura de Derecho, por la máxima casa de estudios, la Universidad Autónoma de Baja California Sur. Complementando sus estudios con la culminación de la Nivelación Pedagógica por la escuela Normal Superior de B.C.S, así como una maestría en Desarrollo Humano y Social por la Universidad Mundial, hoy en día cursando la Maestría en el Centro De Posgrado “Derecho Procesal Penal”.</p>
+                                <p class="text-justify">En el ámbito personal, contrajo nupcias con su ahora esposa la Sra. Bruma Esmeralda Peralta Cota, icono ejemplar y promotora del empoderamiento de la mujer en nuestra ciudad capital, siendo actualmente presidenta de la Asociación Civil, Mujeres Gratitud, A.C; En la actualidad, un ejemplo de solidez como pareja, e icono del ejemplo de complementación y compromiso del uno para el otro.</p>
+                                <p class="text-justify">Algunos de sus pasatiempos son practicar running, Trail running, yoga, reiki, salto en paracaídas, kayak, ciclismo de montaña y ruta. Todo ello, se enarbola con lo que representa Erick Iván, líder moral y promotor social incansable promotor de medicina tradicional, que día a día busca de la sociedad, para generar un futuro ecológicamente sostenible y congruente con los principios que rigen la madre tierra.</p>
+                            </div>
+                        </div>
+                        <!-- Tab 2 -->
+                        <div class="d-flex justify-content-center pt-1">
+                            <button class="btn p-2 bg-fuerte bg-gradient col-4 w-100 border-top-0 border-start-0 border-end-0 border-bottom border-secondary rounded-bottom" data-bs-toggle="collapse" href="#collapseTab2" role="button" aria-expanded="false" aria-controls="collapseTab2">
+                                <h4 class="text-light negrita">
+                                    Labor social
+                                </h4>
+                            </button>
+                        </div>
+                        <!-- Tab contenedor 2 -->
+                        <div class="d-flex justify-content-center">
+                            <div class="collapse col-12 border border-secondary rounded p-3 pb-5 bg-white" id="collapseTab2">
+                                <p class="text-justify">En el año 2012 le otorgaron la distinción del galardón Premio Estatal de la Juventud en la categoría Labor Social, por la XIII Legislatura del Congreso del Estado de Baja California Sur.</p>
+                                <p class="text-justify">En el año 2013 fue propuesto para el Premio Nacional de la Juventud 2013 por la Sociedad de Historia Natural Niparajá en B.C.S, Cruz Roja Mexicana B.C.S, Patronato del Asilo de Ancianos San Vicente De Paúl de la Paz B.C.S, Heroico Cuerpo de Bomberos La Paz B.C.S., Comunidad oaxaqueña en el Estado de Baja California Sur, Asimismo en el mismo año propuesto para recibir el Premio Nacional Acción Voluntaria y Solidaria 2013 por el Centro Estatal de Salud y Adicciones de Baja California Sur.</p>
+                                <p class="text-justify">Desarrollando una de sus primeras pasiones que es servir a la sociedad, inspirado por sus ideales inició su trabajo como servidor público en el 2006, llegando a ostentar cargos a nivel Municipal, Estatal y Federal, en la institución como Unidad Mejora e Innovación Gubernamental, el Instituto Municipal de la Juventud del XIII Ayuntamiento de la Paz, Defensoría de oficio de Estado, Comisión Nacional de Áreas Naturales Protegidas, Asesor Jurídico del Primer regidor en XIV Ayuntamiento de la Paz y Jefe de Verificación y Vigilancia de la Procuraduría Federal del Consumidor en B.C.S, sumando un total de 14 años de experiencia en la administración pública en los 3 niveles de gobierno.</p>
+                            </div>
+                        </div>
+                        <!-- Tab 3 -->
+                        <div class="d-flex justify-content-center pt-1">
+                            <button class="btn p-2 bg-fuerte bg-gradient col-4 w-100 border-top-0 border-start-0 border-end-0 border-bottom border-secondary rounded-bottom" data-bs-toggle="collapse" href="#collapseTab3" role="button" aria-expanded="false" aria-controls="collapseTab3">
+                                <h4 class="text-light negrita">
+                                    Politica
+                                </h4>
+                            </button>
+                        </div>
+                        <!-- Tab contenedor 3 -->
+                        <div class="d-flex justify-content-center">
+                            <div class="collapse col-12 border border-secondary rounded p-3 pb-5 bg-white" id="collapseTab3">
+                                <p class="text-justify">En el ámbito político, desde septiembre del 2019 al 2021, Erick Iván, fue dirigente del Comité Directivo Municipal del Partido Verde Ecologista de México, en el Municipio de la Paz, y actualmente en el ámbito laboral tiene un despacho corporativo con profesionistas legales, fiscales y contables un claro ejemplo del trabajo y esfuerzo de superación ciudadana con honorabilidad, principios y moral intachable, y claro ejemplo de que con un trabajo constante, perseverancia y determinación, se puede lograr cualquier meta y propósito en la vida.</p>
+                            <p class="text-justify">Actualmente es Secretarío de Organización del Comité Ejecutivo Estatal del Partido Verde Ecologista de México en Baja California Sur.</p>
+                            </div>
+                        </div>
+                        <!-- Tab 4 -->
+                        <div class="d-flex justify-content-center pt-1">
+                            <button class="btn p-2 bg-fuerte bg-gradient col-4 w-100 border-top-0 border-start-0 border-end-0 border-bottom border-secondary rounded-bottom" data-bs-toggle="collapse" href="#collapseTab4" role="button" aria-expanded="false" aria-controls="collapseTab4">
+                                <h4 class="text-light negrita">
+                                    Negocios
+                                </h4>
+                            </button>
+                        </div>
+                        <!-- Tab contenedor 4 -->                
+                        <div class="d-flex justify-content-center collapse">
+                            <div class="collapse col-12 border border-secondary rounded p-3 pb-5 bg-white" id="collapseTab4">
+                                Actualmente ofrece sus servicios como abogado en un despacho jurídico.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="noticias" class="">
+            <!-- Contenedor NOTICIERO PC -->
+            <div class="text-light pt-4 pb-5 rounded-2 bg-fuerte bg-gradient" id="noticiasPC">
+                <div class="pb-3">
+                    <h2 class="text-center negrita">Noticias</h2>
+                </div>
+                <!-- CARRUSEL DE NOTICIAS-->
+                <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <!-- NOTICIA 1-->
+                      <div class="carousel-item active" data-bs-interval="8000">
+                        <div class="d-flex justify-content-center">
+                            <div class="col-3">
+                                <img src="./img/noticia-2.jpg" alt="" class="img-fluid rounded-2 aparecerAnim">
+                                <p class="mt-2">Fecha: 10 Octubre 2022</p>
+                            </div>
+                            <div class="col-5 bg-claro2 rounded-2 border border-dark p-2 ms-3 me-3 mb-3 align-self-baseline">
+                                <h4 class="text-dark">
+                                    LA EDUCACIÓN SOBRE INTELIGENCIA EMOCIONAL SERÁ UNA ESTRATEGIA EFICAZ PARA GARANTIZAR LA SALUD MENTAL DE NIÑOS Y ADOLESCENTES CAPITALINOS SESMA SUÁREZ
+                                </h4>
+                                <h5 class="text-center mt-5 "><a target="_blank" href="https://www.partidoverde.org.mx/asamblea-prensa-2/24160-la-educacion-sobre-inteligencia-emocional-sera-una-estrategia-eficaz-para-garantizar-la-salud-mental-de-ninos-y-adolescentes-capitalinos-sesma-suarez" class="text-dark">leer más</a></h5>
+                            </div>
+                        </div> 
+                      </div>
+                      <!-- NOTICIA 2-->
+                      <div class="carousel-item" data-bs-interval="8000">
+                        <div class="d-flex justify-content-center">
+                            <div class="col-3">
+                                <img src="./img/noticia-3.jpg" alt="" class="img-fluid rounded-2">
+                                <p class="mt-2">Fecha: 08 Octubre 2022</p>
+                            </div>
+                            <div class="col-5 bg-claro2 rounded-2 border border-dark p-2 ms-3 me-3 mb-3 align-self-baseline">
+                                <h3 class="text-dark">
+                                    MÁS FACULTADES LEGALES A LA SECRETARÍA DE SALUD PARA REGULAR PUBLICIDAD DE ALIMENTOS SIN VALOR NUTRICIONAL: DIPUTADOS ECOLOGISTAS
+                                </h3>
+                                <h5 class="text-center mt-5 "><a target="_blank" href="https://www.partidoverde.org.mx/prensa/diputados/boletines/24156-mas-facultades-legales-a-la-secretaria-de-salud-para-regular-publicidad-de-alimentos-sin-valor-nutricional-diputados-ecologistas" class="text-dark">leer más</a></h5>
+                            </div>
+                        </div> 
+                      </div>
+                      <!-- NOTICIA 3-->
+                      <div class="carousel-item" data-bs-interval="8000">
+                        <div class="d-flex justify-content-center">
+                            <div class="col-3">
+                                <img src="./img/noticia-4.jpg" alt="" class="img-fluid rounded-2">
+                                <p class="mt-2">Fecha: 07 Octubre 2022</p>
+                            </div>
+                            <div class="col-5 bg-claro2 rounded-2 border border-dark p-2 ms-3 me-3 mb-3 align-self-baseline">
+                                <h3 class="text-dark">
+                                    NUEVA LEY DE CIBERSEGURIDAD DEBE SER UNA POLÍTICA DE ESTADO QUE TRASCIENDA SEXENIOS:  ALEJANDRA LAGUNES
+                                </h3>
+                                <h5 class="text-center mt-5 "><a target="_blank" href="https://www.partidoverde.org.mx/prensa/senado/boletines/24150-nueva-ley-de-ciberseguridad-debe-ser-una-politica-de-estado-que-trascienda-sexenios-alejandra-lagunes" class="text-dark">leer más</a></h5>
+                            </div>
+                        </div> 
+                      </div>
+                      <!-- NOTICIA 4-->
+                      <div class="carousel-item" data-bs-interval="8000">
+                        <div class="d-flex justify-content-center">
+                            <div class="col-3">
+                                <img src="./img/noticia-1.jpg" alt="" class="img-fluid rounded-2">
+                                <p class="mt-2">Fecha: 29 Julio 2022</p>
+                            </div>
+                            <div class="col-5 bg-claro2 rounded-2 border border-dark p-2 ms-3 me-3 mb-3 align-self-baseline">
+                                <h3 class="text-dark">
+                                    CELEBRA PARTIDO VERDE DECLARACIÓN DE ACCESO A UN MEDIO AMBIENTE LIMPIO COMO DERECHO HUMANO UNIVERSAL
+                                </h3>
+                                <h5 class="text-center mt-5 "><a target="_blank" href="https://www.partidoverde.org.mx/prensa/cen/boletines/23964-celebra-partido-verde-declaracion-de-acceso-a-un-medio-ambiente-limpio-como-derecho-humano-universal" class="text-dark">leer más</a></h5>
+                            </div>
+                        </div> 
+                      </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                </div>        
+                <h5 class="text-center mt-5 "><a href="" class="text-light negrita">Ver todas las noticias</a></h5>   
+            </div>
+            <!-- Contenedor NOTICIERO MOVIL -->
+            <div class="text-light pt-4 pb-5 rounded-2 bg-fuerte bg-gradient visually-hidden" id="noticiasMovil">
+                <div class="pb-3">
+                    <h2 class="text-center negrita">Noticias</h2>
+                </div>
+                <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <!-- NOTICIA 1-->
+                      <div class="carousel-item active" data-bs-interval="8000">
+                        <div class="container col-9">
+                            <img src="./img/noticia-2.jpg" alt="" class="img-fluid rounded-2 aparecerAnim">
+                            <p class="mt-2">Fecha: 10 Octubre 2022</p>
+                        </div>
+                        <div class="container col-11 bg-claro2 rounded-2 border border-dark p-2">
+                            <p class="text-dark">
+                                LA EDUCACIÓN SOBRE INTELIGENCIA EMOCIONAL SERÁ UNA ESTRATEGIA EFICAZ PARA GARANTIZAR LA SALUD MENTAL DE NIÑOS Y ADOLESCENTES CAPITALINOS SESMA SUÁREZ
+                            </p>
+                        </div>
+                        <div class="container col-5">
+                           <h5 class="text-center mt-3"><a target="_blank" href="https://www.partidoverde.org.mx/asamblea-prensa-2/24160-la-educacion-sobre-inteligencia-emocional-sera-una-estrategia-eficaz-para-garantizar-la-salud-mental-de-ninos-y-adolescentes-capitalinos-sesma-suarez" class="text-white">Leer más</a></h5>
+                        </div>
+                      </div>
+                      <!-- NOTICIA 2-->
+                      <div class="carousel-item" data-bs-interval="8000">
+                        <div class="container col-9">
+                            <img src="./img/noticia-3.jpg" alt="" class="img-fluid rounded-2">
+                            <p class="mt-2">Fecha: 08 Octubre 2022</p>
+                        </div>
+                        <div class="container col-11 bg-claro2 rounded-2 border border-dark p-2">
+                            <p class="text-dark">
+                                MÁS FACULTADES LEGALES A LA SECRETARÍA DE SALUD PARA REGULAR PUBLICIDAD DE ALIMENTOS SIN VALOR NUTRICIONAL: DIPUTADOS ECOLOGISTAS
+                            </p>
+                        </div>
+                        <div class="container col-5">
+                           <h5 class="text-center mt-3"><a target="_blank" href="https://www.partidoverde.org.mx/prensa/diputados/boletines/24156-mas-facultades-legales-a-la-secretaria-de-salud-para-regular-publicidad-de-alimentos-sin-valor-nutricional-diputados-ecologistas" class="text-white">Leer más</a></h5>
+                        </div>
+                      </div>
+                      <!-- NOTICIA 3-->
+                      <div class="carousel-item" data-bs-interval="8000">
+                        <div class="container col-9">
+                            <img src="./img/noticia-4.jpg" alt="" class="img-fluid rounded-2">
+                            <p class="mt-2">Fecha: 07 Octubre 2022</p>
+                        </div>
+                        <div class="container col-11 bg-claro2 rounded-2 border border-dark p-2">
+                            <p class="text-dark">
+                                NUEVA LEY DE CIBERSEGURIDAD DEBE SER UNA POLÍTICA DE ESTADO QUE TRASCIENDA SEXENIOS:  ALEJANDRA LAGUNES
+                            </p>
+                        </div>
+                        <div class="container col-5">
+                           <h5 class="text-center mt-3"><a target="_blank" href="https://www.partidoverde.org.mx/prensa/senado/boletines/24150-nueva-ley-de-ciberseguridad-debe-ser-una-politica-de-estado-que-trascienda-sexenios-alejandra-lagunes" class="text-white">Leer más</a></h5>
+                        </div>
+                      </div>
+                      <!-- NOTICIA 4-->
+                      <div class="carousel-item" data-bs-interval="8000">
+                        <div class="container col-9">
+                            <img src="./img/noticia-4.jpg" alt="" class="img-fluid rounded-2">
+                            <p class="mt-2">Fecha: 29 Julio 2022</p>
+                        </div>
+                        <div class="container col-11 bg-claro2 rounded-2 border border-dark p-2">
+                            <p class="text-dark">
+                                CELEBRA PARTIDO VERDE DECLARACIÓN DE ACCESO A UN MEDIO AMBIENTE LIMPIO COMO DERECHO HUMANO UNIVERSAL
+                            </p>
+                        </div>
+                        <div class="container col-5">
+                           <h5 class="text-center mt-3"><a target="_blank" href="https://www.partidoverde.org.mx/prensa/cen/boletines/23964-celebra-partido-verde-declaracion-de-acceso-a-un-medio-ambiente-limpio-como-derecho-humano-universal" class="text-white">Leer más</a></h5>
+                        </div>
+                      </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+                <h5 class="text-center mt-5 "><a href="" class="text-light negrita">Ver todas las noticias</a></h5>   
+            </div>
+        </section>
+        <section id="emprendimientos" class="">
+            <!-- Contenedor de fondo claro-->
+            <div class="bg-gradient bg-claro pt-4 pb-5" id="">
+                <!-- Contenedor de EMPRENDMIENTO PC -->
+                <div id="negociosPC">
+                    <div class="d-block pb-3">
+                        <h2 class="text-center negrita">Emprendimientos</h2>
+                    </div>
+                    <div class="d-flex justify-content-center pb-4">
+                        <div class="col-5 mt-5 mb-4 ms-3 me-3">
+                            <p class="">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
+                                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non 
+                                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </p>
+                            <h5 class="text-center mt-5 text-muted"><a href="" class="text-muted">Ver local</a></h5>
+                        </div>
+                        <div class="col-3">
+                            <h3 class="text-center">Titulo</h3>
+                            <img src="./img/paisajes-de-Canada.jpg" alt="" class="img-fluid rounded-2 aparecerAnim">
+                        </div>
+                    </div>
+                </div>
+                <!-- Contenedor emprendimiento Movil -->
+                <div class="pt-4 pb-5 rounded-2 bg-gradient bg-claro visually-hidden" id="negociosMovil">
+                    <div class="pb-3">
+                        <h2 class="text-center negrita">Emprendimientos</h2>
+                    </div>
+                    <div class="">
+                        <div class="container col-9">
+                            <h3 class="text-center negrita">Nombre local</h3>
+                            <img src="./img/paisajes-de-Canada.jpg" alt="" class="img-fluid rounded-2 aparecerAnim">
+                        </div>
+                        <div class="container col-11 mt-2 bg-light rounded-2 border border-secondary p-2">
+                            <p class="">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
+                                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non 
+                                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </p>
+                        </div>
+                        <div class="container col-6 bg-claro bg-gradient">
+                           <h5 class="text-center mt-5"><a href="" class="text-dark">Ver pagina del negocio</a></h5>
+                           <h5 class="text-center mt-5"><a href="" class="text-dark">Ver más negocios</a></h5>
+                        </div>
+                    </div>            
+                </div>
+            </div>
+        </section>
+        <!-- Formulario de contacto -->
+        <div class="d-flex justify-content-center p-3 bg-gradient bg-fuerte ">
+            <form action="" class="border border-2 rounded-3 border-secondary col-sm-9 col-lg-5 p-3 pb-5 mt-2 form-contacto">
+                <h2 class="text-center negrita">Contáctame</h2>
+                <p class="text-center">¿Quíeres que tengamos una conversación?</p>
+                <p class="m-0 mt-3">¿Tienes algún asunto de interés?</p>
+                <input type="text" name="" id="" placeholder="Asunto" class="form-control">
+                <p class="m-0 mt-3">Déjame tus datos para platicar</p>
+                <input type="text" name="" id="" placeholder="Correo electronico" class="form-control">
+                <input type="text" name="" id="" placeholder="Telefono celular" class="form-control mt-3">
+                <div class="d-flex justify-content-around mt-3">
+                    <input class="btn btn-light rounded rounded-4 border col-4 negrita" type="button" value="Enviar">
+                    <a class="col-7" aria-label="Chat on WhatsApp" target="_blank" href="https://wa.me/5216121998600"> 
+                        <img class="col-12" alt="Chat on WhatsApp" src="./img/WhatsAppButtonGreenLarge.png" /> 
+                    </a>
+                </div>
+            </form>
+        </div>   
+    </main>
+    <footer class="bg-dark pt-3 pb-3">
+            <div class="d-flex justify-content-center">
+                <div class="col-2 col-md-1 me-2">
+                    <img class=" img-footer" src="./img/facebook-icon.png" alt="facebook">
+                </div>
+                <div class="col-2 col-md-1 ms-2 me-2">
+                    <img class=" img-footer" src="./img/youtube-icon.png" alt="youtube">
+                </div>
+                <div class="col-2 col-md-1 ms-2">
+                    <img class=" img-footer" src="./img/instagram-icon.png" alt="instagram">
+                </div>
+            </div>
+            <h5 class="text-center text-light">IngeniaSI © 2022</h5>
+    </footer>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/jquery-3.6.1.min.js"></script>
+    <script src="./js/hamburger_menu.js"></script>
+</body>
+</html>
