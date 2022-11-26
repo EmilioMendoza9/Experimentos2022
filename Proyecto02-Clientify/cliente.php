@@ -15,7 +15,7 @@
         $api = new clientifyApi('contacts/'.$id.'/', 'd0b93d57f44241ba962888a24334ee41a0ac9d5b');
         $arre = $api->llamandoApiTokenGet();
         
-        echo("Este cliente es: ");        
+        echo("Nombre: ");        
         echo("<br>");
         echo("<h3>Nombre completo: ");
         echo($arre->first_name . " " . $arre->last_name."</h3>");
