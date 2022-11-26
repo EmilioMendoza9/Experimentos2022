@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,8 +11,13 @@
     <title>Pruebas</title>
 </head>
 <body>
-    <table class="w-75 bg-success bg-opacity-50 mx-auto mt-5 rounded rounded-3">
-      <tbody>
+  <header class="clearfix">
+    <a href='inicioSesion.php'>
+      <button class='btn bg-success bg-gradient text-white float-end mt-3 me-5'><strong>Iniciar sesion</strong></button>
+    </a>
+  </header>
+  <table class="w-75 bg-success bg-opacity-50 mx-auto mt-3 rounded rounded-3">
+    <tbody>
       <tr>
         <th class="py-3">Nombre completo</th>
         <th class="py-3">Compañia</th>
@@ -19,30 +27,41 @@
         <th class="py-3">Ultimo contacto</th>
         <th class="py-3">Acción</th>
       </tr>
-    <?php
-      require_once('resources/php/clientifyApi.php');
-      $api = new clientifyApi('contacts/', 'd0b93d57f44241ba962888a24334ee41a0ac9d5b');
-      $arre = $api->llamandoApiTokenGet();
-
-      for ($i=0; $i < count($arre->results); $i++) { 
-        echo("<tr>");
-          echo("<td class='col-2 py-3 ps-2'>".$arre->results[$i]->first_name ." ".$arre->results[$i]->last_name."</td>");
-          echo("<td class='col-1'>".$arre->results[$i]->company_name."</td>");
-          echo("<td class='col-1'>".$arre->results[$i]->status."</td>");
-          echo("<td class='col-2'>".$arre->results[$i]->owner_name."</td>");
-            $tiempo = explode('T', $arre->results[$i]->created)[0];
-          echo("<td class='col-1'>".$tiempo."</td>");
-            $tiempo =  explode('T', $arre->results[$i]->last_contact)[0];
-          echo("<td class='col-1'>".$tiempo."</td>");
-          echo("<td class='col-1 pe-3'>"."
-            <a href='cliente.php?id=".$arre->results[$i]->id."'>
-              <button class='btn bg-secondary bg-gradient bg-opacity-75 text-white w-100'>Ver contacto</button>
-            </a>".
-          "</td>");
-        echo("</tr>");
-      }
-    ?>
+      <?php
+       require_once('./resources/php/clientifyApi.php');
+      
+        $compañia = strtolower($_SESSION["usuario"]->company);
+        //$compañia = 'tecnologico';
+        //$compañia = 'google';  
+        $api = new clientifyApi('contacts/?tag='.$compañia, 'd0b93d57f44241ba962888a24334ee41a0ac9d5b');
+        //$api = new clientifyApi('contacts/', 'd0b93d57f44241ba962888a24334ee41a0ac9d5b');
+        $arre = $api->llamandoApiTokenGet();
+        if(count($arre->results) == 0){
+          echo('
+            <td colspan=99>
+                <span class="d-flex justify-content-center py-4"><strong>No hay clientes registrados</strong></span>
+            </td>
+          ');
+        }
+        for ($i=0; $i < count($arre->results); $i++) { 
+          echo("<tr>");
+            echo("<td class='col-2 py-3 ps-2'>".$arre->results[$i]->first_name ." ".$arre->results[$i]->last_name."</td>");
+            echo("<td class='col-1'>".$arre->results[$i]->company_name."</td>");
+            echo("<td class='col-1'>".$arre->results[$i]->status."</td>");
+            echo("<td class='col-2'>".$arre->results[$i]->owner_name."</td>");
+              $tiempo = explode('T', $arre->results[$i]->created)[0];
+            echo("<td class='col-1'>".$tiempo."</td>");
+              $tiempo =  explode('T', $arre->results[$i]->last_contact)[0];
+            echo("<td class='col-1'>".$tiempo."</td>");
+            echo("<td class='col-1 pe-3'>"."
+              <a href='cliente.php?id=".$arre->results[$i]->id."'>
+                <button class='btn bg-secondary bg-gradient bg-opacity-75 text-white w-100'>Ver contacto</button>
+              </a>".
+            "</td>");
+          echo("</tr>");
+        }
+      ?>
     </tbody>
-    </table>
+  </table>
 </body>
 </html>

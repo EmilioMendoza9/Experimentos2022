@@ -14,7 +14,6 @@
         $id = $_GET['id'];
         $api = new clientifyApi('contacts/'.$id.'/', 'd0b93d57f44241ba962888a24334ee41a0ac9d5b');
         $arre = $api->llamandoApiTokenGet();
-        
         echo("Nombre: ");        
         echo("<br>");
         echo("<h3>Nombre completo: ");
@@ -40,24 +39,29 @@
         echo("<strong>Etiquetas: </strong>");
         for ($i=0; $i < count($arre->tags); $i++) { 
             echo($arre->tags[$i]);
-            echo(", ");
+            if($i < count($arre->tags) - 1){
+                echo(", ");
+            }
         }
         echo("<br>");
 
         echo("<strong>correos electronicos: </strong>");
         for ($i=0; $i < count($arre->emails); $i++) { 
-            echo("&nbsp;");
-            echo($arre->emails[$i]->type . ", ");//type, email
+            //echo($arre->emails[$i]->type . ", ");//type, email
             echo($arre->emails[$i]->email);//type, email
-            echo(", ");
+            if($i < count($arre->emails) - 1){
+                echo(", ");
+            }
         }
         echo("<br>");
 
         echo("<strong>telefonos: </strong>");
         for ($i=0; $i < count($arre->phones); $i++) { 
-            echo($arre->phones[$i]->type . ", ");//type, phone
+            //echo($arre->phones[$i]->type . ", ");//type, phone
             echo($arre->phones[$i]->phone);//type, phone
-            echo(", ");
+            if($i < count($arre->phones)){
+                echo(", ");
+            }
         }
         echo("<br>");
 
@@ -68,7 +72,9 @@
             echo($arre->addresses[$i]->state  . ', ');//street, city, state, country, postal_code
             echo($arre->addresses[$i]->country  . ', ');//street, city, state, country, postal_code
             echo($arre->addresses[$i]->postal_code  . ', ');//street, city, state, country, postal_code
-            echo(", ");
+            if($i < count($arre->addresses) - 1){
+                echo(", "); 
+            }
         }
         echo("<br>");
 
