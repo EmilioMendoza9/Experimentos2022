@@ -54,12 +54,25 @@ function login(){
 
 login();*/
 require_once('clientifyApi.php');
-session_abort();
+session_unset();
 session_start();
-$logeando = new clientifyApi('contacts/10002531/', 'd0b93d57f44241ba962888a24334ee41a0ac9d5b');
-$log = $logeando->llamandoApiTokenGet();
-$negocio = $_POST["txtCorreo"];
-$_SESSION["usuario"]->company = $negocio;
-header('Location:\Experimentos\Proyecto02-Clientify\index.php');
-exit();
+
+$session = clientifyApi::obtenerToken($_POST['txtCorreo'], $_POST['txtContra']);
+if(isset($session->token)){
+    $api = new clientifyApi('contacts/?id='.$session->user_id , $session->token);
+    $arre = $api->llamandoApiTokenGet();
+    var_dump($arre);
+    die();
+    $_SESSION['user_id'] = $arre->results[0]->id;
+    $_SESSION['token'] = $session->token;
+    header('Location:\Experimentos\Proyecto02-Clientify\index.php');
+}
+else{
+    echo('Error de contraseña o no concuerda con la bd');
+}
+
+
+//$negocio = $_POST["txtCorreo"];
+//$_SESSION["usuario"]->company = $negocio;
+
 ?>

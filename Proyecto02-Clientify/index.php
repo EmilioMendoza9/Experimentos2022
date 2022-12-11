@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once('./resources/php/clientifyApi.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,6 +12,14 @@ session_start();
     <title>Pruebas</title>
 </head>
 <body>
+  <?php
+  $id = $_SESSION['user_id'];
+  $token = $_SESSION['token'];
+    $api = new clientifyApi('contacts/'.$id.'/', $token);
+    $arre = $api->llamandoApiTokenGet();
+    echo('<h3>Bienvenido: '.$arre->first_name.'</h3>');
+  ?>
+  
   <header class="clearfix">
     <a href='inicioSesion.php'>
       <button class='btn bg-success bg-gradient text-white float-end mt-3 me-5'><strong>Iniciar sesion</strong></button>
@@ -28,13 +37,13 @@ session_start();
         <th class="py-3">Acción</th>
       </tr>
       <?php
-       require_once('./resources/php/clientifyApi.php');
-      
+       
+      /*
         $compañia = strtolower($_SESSION["usuario"]->company);
         //$compañia = 'tecnologico';
         //$compañia = 'google';  
-        $api = new clientifyApi('contacts/?tag='.$compañia, 'd0b93d57f44241ba962888a24334ee41a0ac9d5b');
-        //$api = new clientifyApi('contacts/', 'd0b93d57f44241ba962888a24334ee41a0ac9d5b');
+        //$api = new clientifyApi('contacts/?tag='.$compañia, 'd0b93d57f44241ba962888a24334ee41a0ac9d5b');
+        $api = new clientifyApi('contacts/', 'd0b93d57f44241ba962888a24334ee41a0ac9d5b');
         $arre = $api->llamandoApiTokenGet();
         if(count($arre->results) == 0){
           echo('
@@ -60,6 +69,7 @@ session_start();
             "</td>");
           echo("</tr>");
         }
+        */
       ?>
     </tbody>
   </table>

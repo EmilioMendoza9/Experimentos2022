@@ -31,7 +31,7 @@
             return json_decode($response);
         }
 
-        public function obtenerToken($correo, $clave) {
+        public static function obtenerToken($correo, $clave) {
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
@@ -55,6 +55,6 @@
             $response = curl_exec($curl);
 
             curl_close($curl);
-            $this->token = $response;
+            return json_decode($response);
         }   
     }
