@@ -61,8 +61,6 @@ $session = clientifyApi::obtenerToken($_POST['txtCorreo'], $_POST['txtContra']);
 if(isset($session->token)){
     $api = new clientifyApi('contacts/?id='.$session->user_id , $session->token);
     $arre = $api->llamandoApiTokenGet();
-    var_dump($arre);
-    die();
     $_SESSION['user_id'] = $arre->results[0]->id;
     $_SESSION['token'] = $session->token;
     header('Location:\Experimentos\Proyecto02-Clientify\index.php');
