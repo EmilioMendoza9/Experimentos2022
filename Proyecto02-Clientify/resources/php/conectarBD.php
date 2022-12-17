@@ -1,19 +1,17 @@
 <?php
-    $link = mysqli_connect('localhost','root','','portalingeniasi');
-
     class baseDatos {
         private $host;
         private $usuario;
         private $clave;
         private $baseDatos;
-
-        public __construct(){
-
-        }
-
-        public insertUsuario(){
-            
+        public $link;
+        //$link = mysqli_connect('localhost','root','','portalingeniasi');
+        public function __construct($host, $usuario, $clave, $baseDatos){
+            $this->host = $host;
+            $this->usuario = $usuario;
+            $this->clave = $clave;
+            $this->baseDatos = $baseDatos;
+            $link = mysqli_connect($host, $usuario, $clave, $baseDatos);
         }
     }
-
-?>
+    
