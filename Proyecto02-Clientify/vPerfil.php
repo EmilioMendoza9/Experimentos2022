@@ -2,7 +2,7 @@
 session_start();
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,10 +11,9 @@ session_start();
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="resources/css/miEstilo.css">
-    <title>Principal</title>
+    <title>Perfil</title>
 </head>
 <body>
-  
 <header class="clearfix border p-2">
     <div class="d-flex justify-content-between">
         <div>
@@ -40,35 +39,34 @@ session_start();
         ?>
     </div>
   </header>
-  <table class="w-75 bg-success bg-opacity-50 mx-auto mt-3 rounded rounded-3">
-    <tbody>
-      <tr>
-      <?php
-        if(isset($_SESSION['tipoUsuario']) && $_SESSION['tipoUsuario'] == "Cliente"){
-          echo('
-            <th class="py-3 text-center">Compañia</th>
-            <th class="py-3 text-center">Telefono</th>
-            <th class="py-3 text-center">Correo</th>
-            <th class="py-3 text-center">Pagina web</th>
-            <th class="py-3 text-center">Acción</th>
-          ');
-        }
-        else{
-          echo('
-            <th class="py-3 text-center">Nombre completo</th>
-            <th class="py-3 text-center">Telefono</th>
-            <th class="py-3 text-center">Correo</th>
-            <th class="py-3 text-center">Fecha de nacimiento</th>
-          ');
-        }
-      ?>  
-      </tr>
-      <?php
-      ?>
-    </tbody>
-  </table>
-  <script src="resources/js/principal.js"></script>
-  <script>
+    <main class="col-9 mx-auto bg-secondary bg-opacity-25 p-2">
+        <?php
+            if(isset($_SESSION['tipoUsuario']) && $_SESSION['tipoUsuario'] == "Cliente"){
+                echo('
+                    <h3><span class="fw-bold">Nombre:</span> '.$_SESSION["nombresUsuario"].'</h3>
+                    <h3><span class="fw-bold">Apellidos:</span> '.$_SESSION["apellidosUsuario"].'</h3>
+                    <h3><span class="fw-bold">Telefono:</span> '.$_SESSION['telefonoUsuario'].'</h3>
+                    <h3><span class="fw-bold">Correo:</span> '.$_SESSION["correoUsuario"].'</h3>
+                    <h3><span class="fw-bold">Fecha de nacimiento:</span></h3>
+                ');
+            }
+            else{
+                echo('
+                    <h3><span class="fw-bold">Nombre:</span> '.$_SESSION["nombresUsuario"].'</h3>
+                    <h3><span class="fw-bold">Apellidos:</span> '.$_SESSION["apellidosUsuario"].'</h3>
+                    <h3><span class="fw-bold">Correo dueño:</span> '.$_SESSION["correoUsuario"].'</h3>
+                    <h3><span class="fw-bold">Razon social:</span></h3>
+                    <h3><span class="fw-bold">Telefono:</span></h3>
+                    <h3><span class="fw-bold">Correo:</span></h3>
+                    <h3><span class="fw-bold">Pagina web:</span></h3>
+                ');
+            }
+        ?>
+    </main>
+    <footer>
+    </footer>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script>
     function openLeftMenu() {
       document.getElementById("leftMenu").style.display = "block";
     }

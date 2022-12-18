@@ -1,7 +1,8 @@
 <?php
-//require_once('./resources/php/conectarBD.php');
+$ruta = dirname(__DIR__);
+require_once($ruta.'/conectarBD.php');
 class usuarioDatos extends baseDatos{
-    public function insertUsuario(){
+    public function insertUsuario($nombre){
         $query = $this->link->prepare("INSERT INTO Students (name, lastname, email) VALUES (:first_name, :last_name, :email)");
         $query->bindParam(":first_name", $first_Name);
         $query->bindParam(":last_name", $last_Name);
@@ -13,18 +14,19 @@ class usuarioDatos extends baseDatos{
         }
     }
 
-    public function consultarUsuario(){
+    public function consultarUsuario($correo, $telefono){
       try {
-        $query = $this->link->prepare("SELECT id, firstname, lastname FROM MyGuests");
+        $query = $this->link->prepare('SELECT * FROM usuario 
+        WHERE correo = :correo OR telefono = :telefono');
+        $query->bindValue(":correo", $correo);
+        $query->bindValue(":telefono", $telefono);
         $query->execute();
-
+      
         // set the resulting array to associative
         $result = $query->setFetchMode(PDO::FETCH_ASSOC);
-        foreach(new TableRows(new RecursiveArrayIterator($query->fetchAll())) as $k=>$v) {
-          echo $v;
-        }
+        return $query->fetchAll();
       } catch(PDOException $e) {
-        echo "Error: " . $e->getMessage();
+        return "Error: " . $e->getMessage();
       }
     }
 }

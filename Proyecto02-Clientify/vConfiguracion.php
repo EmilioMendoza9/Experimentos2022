@@ -2,7 +2,7 @@
 session_start();
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,10 +11,9 @@ session_start();
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="resources/css/miEstilo.css">
-    <title>Principal</title>
+    <title>Configuración</title>
 </head>
 <body>
-  
 <header class="clearfix border p-2">
     <div class="d-flex justify-content-between">
         <div>
@@ -40,35 +39,37 @@ session_start();
         ?>
     </div>
   </header>
-  <table class="w-75 bg-success bg-opacity-50 mx-auto mt-3 rounded rounded-3">
-    <tbody>
-      <tr>
-      <?php
-        if(isset($_SESSION['tipoUsuario']) && $_SESSION['tipoUsuario'] == "Cliente"){
-          echo('
-            <th class="py-3 text-center">Compañia</th>
-            <th class="py-3 text-center">Telefono</th>
-            <th class="py-3 text-center">Correo</th>
-            <th class="py-3 text-center">Pagina web</th>
-            <th class="py-3 text-center">Acción</th>
-          ');
-        }
-        else{
-          echo('
-            <th class="py-3 text-center">Nombre completo</th>
-            <th class="py-3 text-center">Telefono</th>
-            <th class="py-3 text-center">Correo</th>
-            <th class="py-3 text-center">Fecha de nacimiento</th>
-          ');
-        }
-      ?>  
-      </tr>
-      <?php
-      ?>
-    </tbody>
-  </table>
-  <script src="resources/js/principal.js"></script>
-  <script>
+    <main>
+            <form action="p" id="formCC" method="POST" class="col-4 text-center rounded-3 mt-5 p-5 pt-3 mx-auto">
+                <h3 class="fw-bold">Cambiar contraseña</h3>
+                <input type="password" class="col-9 mb-3 fs-5" placeholder="Contraseña nueva" name="txtCorreo" id="txtCorreo">
+                <input type="password" class="col-9 mb-3 fs-5" placeholder="Repetir contraseña nueva" name="txtContra" id="txtContra">
+                <div class="mx-auto">
+                    <label class="container col-6">Mostrar contraseña
+                        <input type="checkbox" id="cbMostrarContra">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+                <div class="mt-3">
+                    <input type="submit" id="btnIniciar" value="Cambiar contraseña" class="col-5 btn btn-primary fw-bold border border-dark">
+                </div>
+            </form>
+            
+            <article class="mt-3 mx-auto col-5">
+                <h3 class="fw-bold text-center">Aviso de privacidad</h3>
+                <label class="container">Que las empresas tengan acceso a mis datos personales
+                    <input type="checkbox" id="cbPrivacidad">
+                    <span class="checkmark"></span>
+                </label>
+            </article>
+
+
+
+    </main>
+    <footer>
+    </footer>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script>
     function openLeftMenu() {
       document.getElementById("leftMenu").style.display = "block";
     }
