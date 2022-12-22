@@ -12,7 +12,7 @@ require_once('./resources/php/clientifyApi.php');
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <link rel="stylesheet" href="resources/css/miEstilo.css">
     <script src="resources/js/registrar.js"></script>
-    <title>registrar usuario</title>
+    <title>Registrar usuario</title>
 </head>
 <body>
     <header>

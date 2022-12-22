@@ -2,7 +2,7 @@
 session_start();
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -42,16 +42,59 @@ session_start();
   </header>
   <table class="w-75 bg-success bg-opacity-50 mx-auto mt-3 rounded rounded-3">
     <tbody>
-      <tr>
       <?php
         if(isset($_SESSION['tipoUsuario']) && $_SESSION['tipoUsuario'] == "Cliente"){
           echo('
-            <th class="py-3 text-center">Compañia</th>
-            <th class="py-3 text-center">Telefono</th>
-            <th class="py-3 text-center">Correo</th>
-            <th class="py-3 text-center">Pagina web</th>
-            <th class="py-3 text-center">Acción</th>
+            <tr>
+              <th class="py-3 text-center">Compañia</th>
+              <th class="py-3 text-center">Telefono</th>
+              <th class="py-3 text-center">Correo</th>
+              <th class="py-3 text-center">Pagina web</th>
+              <th class="py-3 text-center">Acción</th>
+            </tr>
           ');
+
+          require_once('resources\php\capaDatos\empresa.php');
+          require_once('resources\php\capaDatos\usuario.php');
+          $usuario = new usuarioDatos('localhost', 'root', '', 'portalingeniasi');
+          $suscritos = $usuario->consultarEmpresasSuscritas($_SESSION['idUsuario']);
+          $empresa = new empresaDatos('localhost','root','','portalingeniasi');
+          $empresas = $empresa->consultarEmpresas();
+          if(isset($empresas) && count($empresas) > 0){
+            for ($i=0; $i < count($empresas); $i++) {
+              $siguiendo = false;
+              echo ('<tr>
+                <td class="py-3 text-center">' . $empresas[$i]['razonSocial'] . '</td>
+                <td class="py-3 text-center">' . $empresas[$i]['telefono'] . '</td>
+                <td class="py-3 text-center">' . $empresas[$i]['correo'] . '</td>
+                <td class="py-3 text-center">' . $empresas[$i]['paginaWeb'] . '</td>
+              ');
+              for ($j=0; $j < count($suscritos); $j++) { 
+                if($empresas[$i]['razonSocial'] == $suscritos[$j]['razonSocial']){
+                  $siguiendo = true;
+                  break;
+                }
+              }
+              if($siguiendo){
+                echo ('
+                  <td class="py-3 text-center">
+                    <button id="btnSeguir" class="btn bg-success bg-gradient text-white">Siguiendo</button>
+                  </td>
+                ');
+              }
+              else{
+                echo ('
+                  <td class="py-3 text-center">
+                    <button id="btnSeguir" class="btn bg-success bg-opacity-75 bg-gradient text-white">Seguir</button>
+                  </td>
+                ');
+              }
+              echo ('</tr>');
+            }
+          }
+          else{
+            echo 1;
+          }
         }
         else{
           echo('
@@ -60,11 +103,10 @@ session_start();
             <th class="py-3 text-center">Correo</th>
             <th class="py-3 text-center">Fecha de nacimiento</th>
           ');
+
+
         }
       ?>  
-      </tr>
-      <?php
-      ?>
     </tbody>
   </table>
   <script src="resources/js/principal.js"></script>
