@@ -1,5 +1,10 @@
 <?php
 session_start();
+require_once('resources\php\capaDatos\empresa.php');
+require_once('resources\php\capaDatos\usuario.php');
+$usuario = new usuarioDatos('localhost', 'root', '', 'portalingeniasi');
+$empresa = new empresaDatos('localhost','root','','portalingeniasi');
+$clientes = $empresa->consultarClientes($_SESSION['correoUsuario']);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -39,11 +44,24 @@ session_start();
             }
         ?>
     </div>
-  </header>
+</header>
+<main>
+  <?php
+    if(isset($_SESSION['tipoUsuario']) && $_SESSION['tipoUsuario'] == "Dueño"){
+      echo('
+        <div class="d-flex justify-content-around">
+          <h3><strong>Empresa: </strong>'.$clientes[0]["razonSocial"].'</h3>
+          <h3><strong>Seguidores: </strong>'.count($clientes).'</h3>
+        </div>
+      ');
+    }
+  ?>
+  
   <table class="w-75 bg-success bg-opacity-50 mx-auto mt-3 rounded rounded-3">
     <tbody>
       <?php
         if(isset($_SESSION['tipoUsuario']) && $_SESSION['tipoUsuario'] == "Cliente"){
+          //CABECERA
           echo('
             <tr>
               <th class="py-3 text-center">Compañia</th>
@@ -54,11 +72,7 @@ session_start();
             </tr>
           ');
 
-          require_once('resources\php\capaDatos\empresa.php');
-          require_once('resources\php\capaDatos\usuario.php');
-          $usuario = new usuarioDatos('localhost', 'root', '', 'portalingeniasi');
           $suscritos = $usuario->consultarEmpresasSuscritas($_SESSION['idUsuario']);
-          $empresa = new empresaDatos('localhost','root','','portalingeniasi');
           $empresas = $empresa->consultarEmpresas();
           if(isset($empresas) && count($empresas) > 0){
             for ($i=0; $i < count($empresas); $i++) {
@@ -78,14 +92,14 @@ session_start();
               if($siguiendo){
                 echo ('
                   <td class="py-3 text-center">
-                    <button id="btnSeguir" class="btn bg-success bg-gradient text-white">Siguiendo</button>
+                    <button id="btnSeguir'.($i + 1).'" class="btn bg-success bg-gradient text-white" value="'.$empresas[$i]["id"].'">Siguiendo</button>
                   </td>
                 ');
               }
               else{
                 echo ('
                   <td class="py-3 text-center">
-                    <button id="btnSeguir" class="btn bg-success bg-opacity-75 bg-gradient text-white">Seguir</button>
+                    <button id="btnSeguir'.($i + 1).'" class="btn bg-success bg-opacity-75 bg-gradient text-white" value="'.$empresas[$i]["id"].'">Seguir</button>
                   </td>
                 ');
               }
@@ -93,7 +107,7 @@ session_start();
             }
           }
           else{
-            echo 1;
+            echo('<td colspan=99>No hay empresas registradas.</td>');
           }
         }
         else{
@@ -103,12 +117,12 @@ session_start();
             <th class="py-3 text-center">Correo</th>
             <th class="py-3 text-center">Fecha de nacimiento</th>
           ');
-
-
+          //AGREGAR CLIENTES DATOS  
         }
       ?>  
     </tbody>
   </table>
+</main>
   <script src="resources/js/principal.js"></script>
   <script>
     function openLeftMenu() {

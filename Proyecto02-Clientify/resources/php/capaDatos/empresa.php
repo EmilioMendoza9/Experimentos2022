@@ -13,10 +13,27 @@ class empresaDatos extends baseDatos{
           echo "Unable to create record";
         }
     }
-
+  
     public function consultarEmpresas(){
       try {
         $query = $this->link->prepare('SELECT * FROM empresa');
+        $query->execute();
+      
+        // set the resulting array to associative
+        $result = $query->setFetchMode(PDO::FETCH_ASSOC);
+        return $query->fetchAll();
+      } catch(PDOException $e) {
+        return "Error: " . $e->getMessage();
+      }
+    }
+
+    public function consultarClientes($correo){
+      try {
+        $query = $this->link->prepare('SELECT * FROM empresa 
+        JOIN relacionempresausuario 
+        ON empresa.id = relacionempresausuario.idEmpresa 
+        WHERE correoDueño = :correo');
+        $query->bindParam(":correo", $correo);
         $query->execute();
       
         // set the resulting array to associative
