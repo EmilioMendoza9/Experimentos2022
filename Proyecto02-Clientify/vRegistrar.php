@@ -43,5 +43,6 @@ require_once('./resources/php/clientifyApi.php');
     <footer>
     </footer>
     <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="resources/js/btnCerrarSesion.js"></script>
 </body>
 </html>

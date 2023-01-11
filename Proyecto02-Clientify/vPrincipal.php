@@ -4,7 +4,6 @@ require_once('resources\php\capaDatos\empresa.php');
 require_once('resources\php\capaDatos\usuario.php');
 $usuario = new usuarioDatos('localhost', 'root', '', 'portalingeniasi');
 $empresa = new empresaDatos('localhost','root','','portalingeniasi');
-$clientes = $empresa->consultarClientes($_SESSION['correoUsuario']);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -47,13 +46,24 @@ $clientes = $empresa->consultarClientes($_SESSION['correoUsuario']);
 </header>
 <main>
   <?php
-    if(isset($_SESSION['tipoUsuario']) && $_SESSION['tipoUsuario'] == "Dueño"){
-      echo('
-        <div class="d-flex justify-content-around">
-          <h3><strong>Empresa: </strong>'.$clientes[0]["razonSocial"].'</h3>
-          <h3><strong>Seguidores: </strong>'.count($clientes).'</h3>
-        </div>
-      ');
+    if(isset($_SESSION['tipoUsuario']) && $_SESSION['tipoUsuario'] == "Dueño"){    
+      $clientes = $empresa->consultarClientes($_SESSION['correoUsuario']);
+      if(count($clientes) > 0){
+        echo('
+          <div class="d-flex justify-content-around">
+            <h3><strong>Empresa: </strong>'.$clientes[0]["razonSocial"].'</h3>
+            <h3><strong>Seguidores: </strong>'.count($clientes).'</h3>
+          </div>
+        ');
+      }
+      else{
+        echo('
+          <div class="d-flex justify-content-around">
+            <h3><strong>Empresa: </strong>Empresa</h3>
+            <h3><strong>Seguidores: </strong>0</h3>
+          </div>
+        ');
+      }
     }
   ?>
   
@@ -63,7 +73,7 @@ $clientes = $empresa->consultarClientes($_SESSION['correoUsuario']);
         if(isset($_SESSION['tipoUsuario']) && $_SESSION['tipoUsuario'] == "Cliente"){
           //CABECERA
           echo('
-            <tr>
+            <tr class="bg-success bg-opacity-75">
               <th class="py-3 text-center">Compañia</th>
               <th class="py-3 text-center">Telefono</th>
               <th class="py-3 text-center">Correo</th>
@@ -77,11 +87,11 @@ $clientes = $empresa->consultarClientes($_SESSION['correoUsuario']);
           if(isset($empresas) && count($empresas) > 0){
             for ($i=0; $i < count($empresas); $i++) {
               $siguiendo = false;
-              echo ('<tr>
-                <td class="py-3 text-center">' . $empresas[$i]['razonSocial'] . '</td>
-                <td class="py-3 text-center">' . $empresas[$i]['telefono'] . '</td>
-                <td class="py-3 text-center">' . $empresas[$i]['correo'] . '</td>
-                <td class="py-3 text-center">' . $empresas[$i]['paginaWeb'] . '</td>
+              echo ('<tr class="border-bottom">
+                <td class="py-4 text-center fw-bold">' . $empresas[$i]['razonSocial'] . '</td>
+                <td class="py-4 text-center">' . $empresas[$i]['telefono'] . '</td>
+                <td class="py-4 text-center">' . $empresas[$i]['correo'] . '</td>
+                <td class="py-4 text-center">' . $empresas[$i]['paginaWeb'] . '</td>
               ');
               for ($j=0; $j < count($suscritos); $j++) { 
                 if($empresas[$i]['razonSocial'] == $suscritos[$j]['razonSocial']){
@@ -132,6 +142,6 @@ $clientes = $empresa->consultarClientes($_SESSION['correoUsuario']);
     function closeLeftMenu() {
       document.getElementById("leftMenu").style.display = "none";
     }
-</script>
+  </script>
 </body>
 </html>

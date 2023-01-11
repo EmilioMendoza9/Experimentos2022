@@ -1,4 +1,5 @@
 <?php
+require_once('resources\php\capaDatos\usuario.php');
 session_start();
 ?>
 <!DOCTYPE html>
@@ -41,13 +42,15 @@ session_start();
   </header>
     <main class="col-9 mx-auto bg-secondary bg-opacity-25 p-2">
         <?php
+            $sesion = new usuarioDatos('localhost','root','','portalingeniasi');
+            $usuario = $sesion->consultarUsuarioID($_SESSION['idUsuario']);
             if(isset($_SESSION['tipoUsuario']) && $_SESSION['tipoUsuario'] == "Cliente"){
                 echo('
-                    <h3><span class="fw-bold">Nombre:</span> '.$_SESSION["nombresUsuario"].'</h3>
-                    <h3><span class="fw-bold">Apellidos:</span> '.$_SESSION["apellidosUsuario"].'</h3>
-                    <h3><span class="fw-bold">Telefono:</span> '.$_SESSION['telefonoUsuario'].'</h3>
-                    <h3><span class="fw-bold">Correo:</span> '.$_SESSION["correoUsuario"].'</h3>
-                    <h3><span class="fw-bold">Fecha de nacimiento:</span></h3>
+                    <h3 class="ms-4"><span class="fw-bold">Nombre:</span> '.$_SESSION["nombresUsuario"].'</h3>
+                    <h3 class="ms-4"><span class="fw-bold">Apellidos:</span> '.$_SESSION["apellidosUsuario"].'</h3>
+                    <h3 class="ms-4"><span class="fw-bold">Telefono:</span> '.$_SESSION['telefonoUsuario'].'</h3>
+                    <h3 class="ms-4"><span class="fw-bold">Correo:</span> '.$_SESSION["correoUsuario"].'</h3>
+                    <h3 class="ms-4"><span class="fw-bold">Fecha de nacimiento:</span> '.$usuario[0]['fechaNacimiento'].'</h3>
                 ');
             }
             else{
@@ -66,6 +69,7 @@ session_start();
     <footer>
     </footer>
     <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="resources/js/btnCerrarSesion.js"></script>
     <script>
     function openLeftMenu() {
       document.getElementById("leftMenu").style.display = "block";

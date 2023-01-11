@@ -30,6 +30,21 @@ class usuarioDatos extends baseDatos{
       }
     }
 
+    public function consultarUsuarioID($id){
+      try {
+        $query = $this->link->prepare('SELECT * FROM usuario 
+        WHERE id = :id');
+        $query->bindValue(":id", $id);
+        $query->execute();
+      
+        // set the resulting array to associative
+        $result = $query->setFetchMode(PDO::FETCH_ASSOC);
+        return $query->fetchAll();
+      } catch(PDOException $e) {
+        return "Error: " . $e->getMessage();
+      }
+    }
+
     public function consultarEmpresasSuscritas($idUsuario){
       try {
         $query = $this->link->prepare('SELECT * FROM relacionempresausuario
