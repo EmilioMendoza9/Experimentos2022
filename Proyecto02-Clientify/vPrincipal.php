@@ -2,8 +2,10 @@
 session_start();
 require_once('resources\php\capaDatos\empresa.php');
 require_once('resources\php\capaDatos\usuario.php');
+require_once('resources\php\capaDatos\usuarioEmpresa.php');
 $usuario = new usuarioDatos('localhost', 'root', '', 'portalingeniasi');
 $empresa = new empresaDatos('localhost','root','','portalingeniasi');
+$relacion = new relacionDatos('localhost','root','','portalingeniasi');
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -19,58 +21,13 @@ $empresa = new empresaDatos('localhost','root','','portalingeniasi');
 </head>
 <body>
   
-<header class="clearfix border p-2">
-    <div class="d-flex justify-content-between">
-        <div>
-            <!-- Menu laretal -->
-            <button class="btn bg-primary bg-gradient text-white fs-4" onclick="openLeftMenu()">&#9776;</button>
-            <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="leftMenu">
-            <button onclick="closeLeftMenu()" class="w3-bar-item w3-button w3-large">&times;</button>
-              <a href="vPerfil.php" class="w3-bar-item w3-button">Perfil</a>
-              <a href="vPrincipal.php" class="w3-bar-item w3-button">Temas de interés</a>
-              <a href="vConfiguracion.php" class="w3-bar-item w3-button">Configuración</a>
-            </div>
-        </div>
-        <?php
-            echo('<h3 class="mx-auto fw-bold">Bienvenido: '.$_SESSION['nombresUsuario'].'</h3>');
-        ?>
-        <?php
-            if(isset($_SESSION['idUsuario'])){
-                echo("<button class='btn bg-danger bg-gradient text-white float-end mt-3' id='btnCerrarS'><strong>Cerrar sesión</strong></button>");
-            }
-            else{
-                echo("<button class='btn bg-success bg-gradient text-white float-end mt-3' id='btnAbrirS'><strong>Iniciar sesion</strong></button>");
-            }
-        ?>
-    </div>
-</header>
+<?php
+  require_once('gMenu.php');
+?>
 <main>
-  <?php
-    if(isset($_SESSION['tipoUsuario']) && $_SESSION['tipoUsuario'] == "Dueño"){    
-      $clientes = $empresa->consultarClientes($_SESSION['correoUsuario']);
-      if(count($clientes) > 0){
-        echo('
-          <div class="d-flex justify-content-around">
-            <h3><strong>Empresa: </strong>'.$clientes[0]["razonSocial"].'</h3>
-            <h3><strong>Seguidores: </strong>'.count($clientes).'</h3>
-          </div>
-        ');
-      }
-      else{
-        echo('
-          <div class="d-flex justify-content-around">
-            <h3><strong>Empresa: </strong>Empresa</h3>
-            <h3><strong>Seguidores: </strong>0</h3>
-          </div>
-        ');
-      }
-    }
-  ?>
-  
   <table class="w-75 bg-success bg-opacity-50 mx-auto mt-3 rounded rounded-3">
     <tbody>
       <?php
-        if(isset($_SESSION['tipoUsuario']) && $_SESSION['tipoUsuario'] == "Cliente"){
           //CABECERA
           echo('
             <tr class="bg-success bg-opacity-75">
@@ -119,16 +76,7 @@ $empresa = new empresaDatos('localhost','root','','portalingeniasi');
           else{
             echo('<td colspan=99>No hay empresas registradas.</td>');
           }
-        }
-        else{
-          echo('
-            <th class="py-3 text-center">Nombre completo</th>
-            <th class="py-3 text-center">Telefono</th>
-            <th class="py-3 text-center">Correo</th>
-            <th class="py-3 text-center">Fecha de nacimiento</th>
-          ');
-          //AGREGAR CLIENTES DATOS  
-        }
+        
       ?>  
     </tbody>
   </table>

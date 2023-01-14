@@ -14,33 +14,11 @@ session_start();
     <title>Configuración</title>
 </head>
 <body>
-<header class="clearfix border p-2">
-    <div class="d-flex justify-content-between">
-        <div>
-            <!-- Menu laretal -->
-            <button class="btn bg-primary bg-gradient text-white fs-4" onclick="openLeftMenu()">&#9776;</button>
-            <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="leftMenu">
-            <button onclick="closeLeftMenu()" class="w3-bar-item w3-button w3-large">&times;</button>
-              <a href="vPerfil.php" class="w3-bar-item w3-button">Perfil</a>
-              <a href="vPrincipal.php" class="w3-bar-item w3-button">Temas de interés</a>
-              <a href="vConfiguracion.php" class="w3-bar-item w3-button">Configuración</a>
-            </div>
-        </div>
-        <?php
-            echo('<h3 class="mx-auto fw-bold">Bienvenido: '.$_SESSION['nombresUsuario'].'</h3>');
-        ?>
-        <?php
-            if(isset($_SESSION['idUsuario'])){
-                echo("<button class='btn bg-danger bg-gradient text-white float-end mt-3' id='btnCerrarS'><strong>Cerrar sesión</strong></button>");
-            }
-            else{
-                echo("<button class='btn bg-success bg-gradient text-white float-end mt-3' id='btnAbrirS'><strong>Iniciar sesion</strong></button>");
-            }
-        ?>
-    </div>
-  </header>
+<?php
+  require_once('gMenu.php');
+?>
     <main>
-            <form action="p" id="formInfoPersonal" method="POST" class="col-6 text-center rounded-3 mt-3 p-5 pt-3 mx-auto">
+            <form action="" id="formInfoPersonal" method="POST" class="col-6 text-center rounded-3 mt-3 p-5 pt-3 mx-auto">
                 <h3 class="fw-bold">Datos personales</h3>
                 <div class="d-flex justify-content-center">
                     <div>
@@ -56,7 +34,7 @@ session_start();
                     <input type="submit" id="btnCambiar" value="Cambiar información" class="col-5 btn btn-primary fw-bold border border-dark">
                 </div>
             </form>
-            <form action="p" id="formCC" method="POST" class="col-4 text-center rounded-3 mt-3 p-5 pt-3 mx-auto">
+            <form action="" id="formCC" method="POST" class="col-4 text-center rounded-3 mt-3 p-5 pt-3 mx-auto">
                 <h3 class="fw-bold">Cambiar contraseña</h3>
                 <input type="password" class="col-9 mb-3 fs-5" placeholder="Contraseña nueva" name="txtContra1" id="txtContra1">
                 <input type="password" class="col-9 mb-3 fs-5" placeholder="Repetir contraseña nueva" name="txtContra2" id="txtContra2">
@@ -78,7 +56,7 @@ session_start();
                     <span class="checkmark mt-2"></span>
                 </label>
             </article>
-
+        <!--
             <article class="mt-5 mx-auto col-5">
                 <h3 class="fw-bold text-center">Modo oscuro</h3>
                 <label class="container col-7">Activar modo oscuro
@@ -86,7 +64,7 @@ session_start();
                     <span class="checkmark mt-2"></span>
                 </label>
             </article>
-
+        -->
 
 
     </main>
@@ -94,6 +72,7 @@ session_start();
     </footer>
     <script src="./js/bootstrap.bundle.min.js"></script>
     <script src="resources/js/btnCerrarSesion.js"></script>
+    <script src="resources/js/configuracion.js"></script>
     <script>
     function openLeftMenu() {
       document.getElementById("leftMenu").style.display = "block";

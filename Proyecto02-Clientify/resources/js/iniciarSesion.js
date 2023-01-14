@@ -28,7 +28,10 @@ $(document).ready( function() {
             success: function(response)
             {
                 console.log(response);
-                if(response == 0){
+                if(response == 10){
+                    window.location.href = "vSeguidores.php";
+                }
+                else if(response == 0){
                     salida = true;
                 }
                 else if(response == 1){

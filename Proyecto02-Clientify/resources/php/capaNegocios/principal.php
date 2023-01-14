@@ -1,6 +1,7 @@
 <?php
 $ruta = dirname(__DIR__);
 require_once($ruta.'\capaDatos\empresa.php');
+
 $empresa = new empresaDatos('localhost','root','','portalingeniasi');
 $usuarioValido = $empresa->consultarEmpresas();
 if(isset($usuarioValido) && count($usuarioValido) > 0){

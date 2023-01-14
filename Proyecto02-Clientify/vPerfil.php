@@ -1,6 +1,10 @@
 <?php
 require_once('resources\php\capaDatos\usuario.php');
+require_once('resources\php\capaDatos\empresa.php');
 session_start();
+    $sesion = new usuarioDatos('localhost','root','','portalingeniasi');
+    $dueñoEmpresa = new empresaDatos('localhost','root','','portalingeniasi');
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -15,34 +19,11 @@ session_start();
     <title>Perfil</title>
 </head>
 <body>
-<header class="clearfix border p-2">
-    <div class="d-flex justify-content-between">
-        <div>
-            <!-- Menu laretal -->
-            <button class="btn bg-primary bg-gradient text-white fs-4" onclick="openLeftMenu()">&#9776;</button>
-            <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="leftMenu">
-            <button onclick="closeLeftMenu()" class="w3-bar-item w3-button w3-large">&times;</button>
-              <a href="vPerfil.php" class="w3-bar-item w3-button">Perfil</a>
-              <a href="vPrincipal.php" class="w3-bar-item w3-button">Temas de interés</a>
-              <a href="vConfiguracion.php" class="w3-bar-item w3-button">Configuración</a>
-            </div>
-        </div>
+<?php
+  require_once('gMenu.php');
+?>
+    <main class="col-7 mt-5 mx-auto bg-secondary bg-opacity-25 p-2">
         <?php
-            echo('<h3 class="mx-auto fw-bold">Bienvenido: '.$_SESSION['nombresUsuario'].'</h3>');
-        ?>
-        <?php
-            if(isset($_SESSION['idUsuario'])){
-                echo("<button class='btn bg-danger bg-gradient text-white float-end mt-3' id='btnCerrarS'><strong>Cerrar sesión</strong></button>");
-            }
-            else{
-                echo("<button class='btn bg-success bg-gradient text-white float-end mt-3' id='btnAbrirS'><strong>Iniciar sesion</strong></button>");
-            }
-        ?>
-    </div>
-  </header>
-    <main class="col-9 mx-auto bg-secondary bg-opacity-25 p-2">
-        <?php
-            $sesion = new usuarioDatos('localhost','root','','portalingeniasi');
             $usuario = $sesion->consultarUsuarioID($_SESSION['idUsuario']);
             if(isset($_SESSION['tipoUsuario']) && $_SESSION['tipoUsuario'] == "Cliente"){
                 echo('
@@ -54,14 +35,15 @@ session_start();
                 ');
             }
             else{
+                $res = $dueñoEmpresa->consultarEmpresaPorDueño($_SESSION['correoUsuario']);
                 echo('
                     <h3><span class="fw-bold">Nombre:</span> '.$_SESSION["nombresUsuario"].'</h3>
                     <h3><span class="fw-bold">Apellidos:</span> '.$_SESSION["apellidosUsuario"].'</h3>
                     <h3><span class="fw-bold">Correo dueño:</span> '.$_SESSION["correoUsuario"].'</h3>
-                    <h3><span class="fw-bold">Razon social:</span></h3>
-                    <h3><span class="fw-bold">Telefono:</span></h3>
-                    <h3><span class="fw-bold">Correo:</span></h3>
-                    <h3><span class="fw-bold">Pagina web:</span></h3>
+                    <h3><span class="fw-bold">Razon social:</span> '.$res[0]['razonSocial'].'</h3>
+                    <h3><span class="fw-bold">Telefono:</span> '.$_SESSION['telefonoUsuario'].'</h3>
+                    <h3><span class="fw-bold">Correo:</span> '.$_SESSION["correoUsuario"].'</h3>
+                    <h3><span class="fw-bold">Pagina web:</span> '.$res[0]['paginaWeb'].'</h3>
                 ');
             }
         ?>

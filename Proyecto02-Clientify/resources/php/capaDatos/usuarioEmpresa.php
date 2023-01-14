@@ -39,4 +39,28 @@ class relacionDatos extends baseDatos{
         return "Error: " . $e->getMessage();
       }
     }
+
+    public function seguidores($idEmpresa, $empresOrigen)
+    {
+      try {
+        $query = $this->link->prepare('SELECT t.id,nombres,apellidos,telefono,correo,fechaNacimiento,origen FROM matrizconfiguracion JOIN (SELECT * FROM relacionempresausuario JOIN usuario
+        ON relacionempresausuario.idUsuario = usuario.id
+        WHERE idEmpresa = :idEmpresa) as t
+        ON matrizconfiguracion.idUsuario = t.id
+        WHERE datosPrivados = "Y"
+        UNION
+        SELECT id,nombres,apellidos,telefono,correo,fechaNacimiento,origen FROM usuario 
+        WHERE origen = :origen
+        ');
+        $query->bindParam(":idEmpresa", $idEmpresa);
+        $query->bindParam(":origen", $empresOrigen);
+        $query->execute();
+      
+        // set the resulting array to associative
+        $result = $query->setFetchMode(PDO::FETCH_ASSOC);
+        return $query->fetchAll();
+      } catch(PDOException $e) {
+        return "Error: " . $e->getMessage();
+      }
+    }
 }

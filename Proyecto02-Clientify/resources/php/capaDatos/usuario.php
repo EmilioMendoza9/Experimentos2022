@@ -61,4 +61,15 @@ class usuarioDatos extends baseDatos{
         return "Error: " . $e->getMessage();
       }
     }
+
+    public function cambiarContraseña($id, $contra){
+      $query = $this->link->prepare("UPDATE usuario SET clave=:contra WHERE id=:idUsuario ");
+      $query->bindParam(":contra", $contra);
+      $query->bindParam(":idUsuario", $id);
+      if ($query->execute()) {
+        return "New record created successfully";
+      } else {
+        return "Unable to create record";
+      }
+  }
 }

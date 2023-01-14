@@ -43,4 +43,19 @@ class empresaDatos extends baseDatos{
         return "Error: " . $e->getMessage();
       }
     }
+
+    public function consultarEmpresaPorDueño($correo)
+    {
+      try {
+        $query = $this->link->prepare('SELECT * FROM empresa WHERE correoDueño = :correo');
+        $query->bindParam(":correo", $correo);
+        $query->execute();
+      
+        // set the resulting array to associative
+        $result = $query->setFetchMode(PDO::FETCH_ASSOC);
+        return $query->fetchAll();
+      } catch(PDOException $e) {
+        return "Error: " . $e->getMessage();
+      }
+    }
 }

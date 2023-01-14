@@ -1,12 +1,16 @@
 <?php
 $ruta = dirname(__DIR__);
 require_once($ruta.'\capaDatos\usuario.php');
-$usuario = new usuarioDatos('localhost','root','','portalingeniasi');
+require_once($ruta.'\capaDatos\empresa.php');
+
+$usuarioObj = new usuarioDatos('localhost','root','','portalingeniasi');
+$empresaObj = new empresaDatos('localhost','root','','portalingeniasi');
 $correo = $_POST['txtCorreo'];
 $clave = $_POST['txtContra'];
-$usuarioValido = $usuario->consultarUsuario($correo, $correo);
+$usuarioValido = $usuarioObj->consultarUsuario($correo, $correo);
 if(isset($usuarioValido) && count($usuarioValido) == 1){
-    if($clave == $usuarioValido[0]["clave"]){
+    if(password_verify($clave, $usuarioValido[0]["clave"])){
+    //if($clave == $usuarioValido[0]["clave"]){
         session_unset();
         session_start();
         $_SESSION['idUsuario'] = $usuarioValido[0]['id'];
@@ -16,7 +20,16 @@ if(isset($usuarioValido) && count($usuarioValido) == 1){
         $_SESSION['apellidosUsuario'] = $usuarioValido[0]['apellidos'];
         $_SESSION['idClientifyUsuario'] = $usuarioValido[0]['idClientify'];
         $_SESSION['tipoUsuario'] = $usuarioValido[0]['tipo'];
-        echo 0;
+
+        if($_SESSION['tipoUsuario'] == "Dueño"){
+            $empresa = $empresaObj->consultarEmpresaPorDueño($_SESSION['correoUsuario']);
+            $_SESSION['idEmpresa'] = $empresa[0]['id'];
+            $_SESSION['razonSocial'] = $empresa[0]['razonSocial'];
+            echo 10;
+        }
+        else{
+            echo 0;
+        }
     }
     else{
         //Contraseña incorrecta
