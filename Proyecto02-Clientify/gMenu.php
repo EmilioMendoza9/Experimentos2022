@@ -1,7 +1,6 @@
 <?php
   
-    echo(
-        '<header class="clearfix border p-2">
+    echo('
             <div class="d-flex justify-content-between">
                 <div>
                     <!-- Menu laretal -->
@@ -28,7 +27,6 @@
                     }
     echo('
             </div>
-        </header>
     ');
   
 ?>

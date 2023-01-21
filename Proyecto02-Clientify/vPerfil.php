@@ -4,7 +4,6 @@ require_once('resources\php\capaDatos\empresa.php');
 session_start();
     $sesion = new usuarioDatos('localhost','root','','portalingeniasi');
     $dueñoEmpresa = new empresaDatos('localhost','root','','portalingeniasi');
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -18,10 +17,15 @@ session_start();
     <link rel="stylesheet" href="resources/css/miEstilo.css">
     <title>Perfil</title>
 </head>
+
+
+
 <body>
-<?php
-  require_once('gMenu.php');
-?>
+    <header class="clearfix border p-2">
+        <?php
+            require_once('gMenu.php');
+        ?>
+    </header>
     <main class="col-7 mt-5 mx-auto bg-secondary bg-opacity-25 p-2">
         <?php
             $usuario = $sesion->consultarUsuarioID($_SESSION['idUsuario']);
@@ -53,13 +57,13 @@ session_start();
     <script src="./js/bootstrap.bundle.min.js"></script>
     <script src="resources/js/btnCerrarSesion.js"></script>
     <script>
-    function openLeftMenu() {
-      document.getElementById("leftMenu").style.display = "block";
-    }
+        function openLeftMenu() {
+        document.getElementById("leftMenu").style.display = "block";
+        }
 
-    function closeLeftMenu() {
-      document.getElementById("leftMenu").style.display = "none";
-    }
-</script>
+        function closeLeftMenu() {
+        document.getElementById("leftMenu").style.display = "none";
+        }
+    </script>
 </body>
 </html>

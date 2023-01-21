@@ -19,92 +19,91 @@ $relacion = new relacionDatos('localhost','root','','portalingeniasi');
     <link rel="stylesheet" href="resources/css/miEstilo.css">
     <title>Seguidores</title>
 </head>
+
+
+
 <body>
-
-<?php
-  require_once('gMenu.php');
-?>
-<main>
-  <?php
-    $clientes = $empresa->consultarClientes($_SESSION['correoUsuario']);
-    if(count($clientes) > 0){
-      echo('
-        <div class="d-flex justify-content-around">
-          <h3><strong>Empresa: </strong>'.$_SESSION['razonSocial'].'</h3>
-          <h3><strong>Seguidores: </strong>'.count($clientes).'</h3>
-        </div>
-      ');
-    }
-    else{
-      echo('
-        <div class="d-flex justify-content-around">
-          <h3><strong>Empresa: </strong>'.$_SESSION['razonSocial'].'</h3>
-          <h3><strong>Seguidores: </strong>0</h3>
-        </div>
-      ');
-    }
-  ?>
-  
-  <table class="w-75 bg-success bg-opacity-50 mx-auto mt-3 rounded rounded-3">
-    <tbody>
-      <?php
-          $seguidores = $relacion->seguidores($_SESSION['idEmpresa'], $_SESSION['razonSocial']);
-
-          echo('
-            <tr class="bg-success bg-opacity-75">
-              <th class="py-3 text-center">Nombre completo</th>
-              <th class="py-3 text-center">Telefono</th>
-              <th class="py-3 text-center">Correo</th>
-              <th class="py-3 text-center">Fecha de nacimiento</th>
-              <th class="py-3 text-center">Estado</th>
-            </tr>
-          ');
-          for ($i=0; $i < count($seguidores); $i++) { 
-            if($seguidores[$i]['correo'] == $_SESSION['correoUsuario']){
-              echo ('<tr class="border-bottom">
-                  <td class="py-4 text-center fw-bold">' . $seguidores[$i]['nombres'] .' '. $seguidores[$i]['apellidos'] . '</td>
-                  <td class="py-4 text-center">' . $seguidores[$i]['telefono'] . '</td>
-                  <td class="py-4 text-center">' . $seguidores[$i]['correo'] . '</td>
-                  <td class="py-4 text-center">' . $seguidores[$i]['fechaNacimiento'] . '</td>
-                  <td class="py-4 text-center">Dueño</td>
-                </tr>
-              '); 
-              break;
+    <header class="clearfix border p-2">
+        <?php
+            require_once('gMenu.php');
+        ?>
+    </header>
+    <main>
+        <?php
+            $clientes = $empresa->consultarClientes($_SESSION['correoUsuario']);
+            if(count($clientes) > 0){
+                echo('
+                    <div class="d-flex justify-content-around">
+                    <h3><strong>Empresa: </strong>'.$_SESSION['razonSocial'].'</h3>
+                    <h3><strong>Seguidores: </strong>'.count($clientes).'</h3>
+                    </div>
+                ');
             }
-        
-          
-          for ($i=0; $i < count($seguidores); $i++) { 
-            if($seguidores[$i]['correo'] != $_SESSION['correoUsuario']){
-              echo ('<tr class="border-bottom">
-                <td class="py-4 text-center fw-bold">' . $seguidores[$i]['nombres'] .' '. $seguidores[$i]['apellidos'] . '</td>
-                <td class="py-4 text-center">' . $seguidores[$i]['telefono'] . '</td>
-                <td class="py-4 text-center">' . $seguidores[$i]['correo'] . '</td>
-                <td class="py-4 text-center">' . $seguidores[$i]['fechaNacimiento'] . '</td>
-              ');
-              
-              if($seguidores[$i]['origen'] == $_SESSION['razonSocial']){
-                echo('<td class="py-4 text-center">Cliente registrado</td>');
-              }
-              else{
-                echo('<td class="py-4 text-center">Seguidor</td>');
-              }
-              echo('</tr>');
+            else{
+            echo('
+                <div class="d-flex justify-content-around">
+                    <h3><strong>Empresa: </strong>'.$_SESSION['razonSocial'].'</h3>
+                    <h3><strong>Seguidores: </strong>0</h3>
+                </div>
+            ');
             }
-        }
-      }
-      ?>  
-    </tbody>
-  </table>
-</main>
-  <script src="resources/js/principal.js"></script>
-  <script>
+        ?>
+        <table class="w-75 bg-success bg-opacity-50 mx-auto mt-3 rounded rounded-3">
+            <tbody>
+                <?php
+                    $seguidores = $relacion->seguidores($_SESSION['idEmpresa'], $_SESSION['razonSocial']);
+                    echo('
+                        <tr class="bg-success bg-opacity-75">
+                        <th class="py-3 text-center">Nombre completo</th>
+                        <th class="py-3 text-center">Telefono</th>
+                        <th class="py-3 text-center">Correo</th>
+                        <th class="py-3 text-center">Fecha de nacimiento</th>
+                        <th class="py-3 text-center">Estado</th>
+                        </tr>
+                    ');
+                    for ($i=0; $i < count($seguidores); $i++) { 
+                        if($seguidores[$i]['correo'] == $_SESSION['correoUsuario']){
+                            echo ('<tr class="border-bottom">
+                                <td class="py-4 text-center fw-bold">' . $seguidores[$i]['nombres'] .' '. $seguidores[$i]['apellidos'] . '</td>
+                                <td class="py-4 text-center">' . $seguidores[$i]['telefono'] . '</td>
+                                <td class="py-4 text-center">' . $seguidores[$i]['correo'] . '</td>
+                                <td class="py-4 text-center">' . $seguidores[$i]['fechaNacimiento'] . '</td>
+                                <td class="py-4 text-center">Dueño</td>
+                                </tr>
+                            '); 
+                            break;
+                        }
+                        for ($i=0; $i < count($seguidores); $i++) { 
+                            if($seguidores[$i]['correo'] != $_SESSION['correoUsuario']){
+                                echo ('<tr class="border-bottom">
+                                    <td class="py-4 text-center fw-bold">' . $seguidores[$i]['nombres'] .' '. $seguidores[$i]['apellidos'] . '</td>
+                                    <td class="py-4 text-center">' . $seguidores[$i]['telefono'] . '</td>
+                                    <td class="py-4 text-center">' . $seguidores[$i]['correo'] . '</td>
+                                    <td class="py-4 text-center">' . $seguidores[$i]['fechaNacimiento'] . '</td>
+                                ');    
+                                if($seguidores[$i]['origen'] == $_SESSION['razonSocial']){
+                                    echo('<td class="py-4 text-center">Cliente registrado</td>');
+                                }
+                                else{
+                                    echo('<td class="py-4 text-center">Seguidor</td>');
+                                }
+                                echo('</tr>');
+                            }
+                        }
+                    }
+                ?>  
+            </tbody>
+        </table>
+    </main>
+    <script src="resources/js/principal.js"></script>
+    <script>
     function openLeftMenu() {
-      document.getElementById("leftMenu").style.display = "block";
+        document.getElementById("leftMenu").style.display = "block";
     }
 
     function closeLeftMenu() {
-      document.getElementById("leftMenu").style.display = "none";
+        document.getElementById("leftMenu").style.display = "none";
     }
-  </script>
+    </script>
 </body>
 </html>

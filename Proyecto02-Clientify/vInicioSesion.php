@@ -1,6 +1,5 @@
 <?php
 session_start();
-//$_SESSION["token"] = bin2hex(random_bytes(32));
 require_once('./resources/php/clientifyApi.php');
 ?>
 <!DOCTYPE html>
@@ -15,6 +14,9 @@ require_once('./resources/php/clientifyApi.php');
     <script src="resources/js/iniciarSesion.js"></script>
     <title>Inicio sesión</title>
 </head>
+
+
+
 <body>
     <header>
     </header>
@@ -22,7 +24,7 @@ require_once('./resources/php/clientifyApi.php');
         <article class="d-flex justify-content-center">
             <form action="resources/php/capaNegocios/iniciarSesionAuth.php" id="formInicio" method="POST" class="col-4 bg-secondary text-center rounded-3 mt-5 p-5 pt-3">
                 <h3 class="fw-bold text-white">INICIO DE SESIÓN</h3>
-               <!--  <input type="hidden" name="token" value="<?=$_SESSION["token"]?>"> -->
+                    <!--  <input type="hidden" name="token" value="<?=$_SESSION["token"]?>"> -->
                 <input type="email" class="col-9 mb-3" placeholder="Correo" name="txtCorreo" id="txtCorreo">
                 <input type="password" class="col-9 mb-3" placeholder="Contraseña" name="txtContra" id="txtContra">
                 <div class="mx-auto">

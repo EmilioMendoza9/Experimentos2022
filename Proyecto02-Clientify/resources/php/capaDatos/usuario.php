@@ -47,10 +47,13 @@ class usuarioDatos extends baseDatos{
 
     public function consultarEmpresasSuscritas($idUsuario){
       try {
-        $query = $this->link->prepare('SELECT * FROM relacionempresausuario
-        join empresa 
-        on relacionempresausuario.idEmpresa = empresa.id
-        WHERE idUsuario = :id');
+        $query = $this->link->prepare('SELECT * FROM empresa 
+          LEFT JOIN ( 
+              SELECT * FROM relacionempresausuario 
+              WHERE idUsuario = :id 
+            ) AS t1 
+          ON empresa.id = t1.idEmpresa 
+          ORDER BY idUsuario DESC');
         $query->bindParam(":id", $idUsuario);
         $query->execute();
       
@@ -63,13 +66,28 @@ class usuarioDatos extends baseDatos{
     }
 
     public function cambiarContraseña($id, $contra){
-      $query = $this->link->prepare("UPDATE usuario SET clave=:contra WHERE id=:idUsuario ");
-      $query->bindParam(":contra", $contra);
-      $query->bindParam(":idUsuario", $id);
-      if ($query->execute()) {
-        return "New record created successfully";
-      } else {
-        return "Unable to create record";
-      }
-  }
+        $query = $this->link->prepare("UPDATE usuario SET clave=:contra WHERE id=:idUsuario ");
+        $query->bindParam(":contra", $contra);
+        $query->bindParam(":idUsuario", $id);
+        if ($query->execute()) {
+            return "New record created successfully";
+        } else {
+            return "Unable to create record";
+        }
+    }
+
+    public function cambiarInfoPersonal($id, $correo, $telefono, $nombres, $apellidos){
+        $query = $this->link->prepare("UPDATE usuario SET correo=:correo, telefono=:telefono, nombres=:nombres, apellidos=:apellidos 
+        WHERE id=:idUsuario");
+        $query->bindParam(":correo", $correo);
+        $query->bindParam(":telefono", $telefono);
+        $query->bindParam(":nombres", $nombres);
+        $query->bindParam(":apellidos", $apellidos);
+        $query->bindParam(":idUsuario", $id);
+        if ($query->execute()) {
+            return "New record created successfully";
+        } else {
+            return "Unable to create record";
+        }
+    }
 }
