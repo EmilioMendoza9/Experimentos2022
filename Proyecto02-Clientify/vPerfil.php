@@ -1,9 +1,12 @@
 <?php
+session_start();
+if(!($_SESSION['idUsuario'])){
+    header('Location:/Experimentos/Proyecto02-Clientify/vIndex.php');
+}
 require_once('resources\php\capaDatos\usuario.php');
 require_once('resources\php\capaDatos\empresa.php');
-session_start();
-    $sesion = new usuarioDatos('localhost','root','','portalingeniasi');
-    $dueñoEmpresa = new empresaDatos('localhost','root','','portalingeniasi');
+$sesion = new usuarioDatos('localhost','root','','portalingeniasi');
+$dueñoEmpresa = new empresaDatos('localhost','root','','portalingeniasi');
 ?>
 <!DOCTYPE html>
 <html lang="es">

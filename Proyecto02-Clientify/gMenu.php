@@ -1,5 +1,4 @@
-<?php
-  
+    <?php
     echo('
             <div class="d-flex justify-content-between">
                 <div>
@@ -18,7 +17,7 @@
                     </div>
                     </div>
                     ');
-                    echo('<h3 class="mx-auto fw-bold">Bienvenido: '.$_SESSION['nombresUsuario'].'</h3>');
+                    echo('<h3 class="mx-auto fw-bold" id="welcome">Bienvenido: '.$_SESSION['nombresUsuario'].'</h3>');
                     if(isset($_SESSION['idUsuario'])){
                         echo("<button class='btn bg-danger bg-gradient text-white float-end mt-3' id='btnCerrarS'><strong>Cerrar sesión</strong></button>");
                     }
@@ -28,5 +27,4 @@
     echo('
             </div>
     ');
-  
 ?>

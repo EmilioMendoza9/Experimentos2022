@@ -1,5 +1,8 @@
 <?php
 session_start();
+if(!($_SESSION['idUsuario'])){
+    header('Location:/Experimentos/Proyecto02-Clientify/vIndex.php');
+}
 require_once('resources\php\capaDatos\empresa.php');
 require_once('resources\php\capaDatos\usuario.php');
 require_once('resources\php\capaDatos\usuarioEmpresa.php');

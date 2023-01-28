@@ -1,4 +1,8 @@
 $(document).ready( function() {
+	window.history.pushState(null, null, window.location.href);
+  	window.onpopstate = function(){
+	    window.history.go(1);
+  	};	
     $('#btnCerrarS').click( function () {
         $.when(
             $.ajax({
@@ -44,7 +48,7 @@ $(document).ready( function() {
       $('#' + botones[i].id).click(seguimiento);
     }  
   });
-  
+
   function seguimiento() {
     console.log('Cortina para cancelar todo');
     idActual = $(this).attr('id');

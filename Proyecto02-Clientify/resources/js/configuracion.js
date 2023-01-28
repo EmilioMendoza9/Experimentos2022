@@ -47,16 +47,54 @@ $(document).ready( function() {
     ).done(
         
     );
-    
-    $('#cbPrivacidad').click(function () {
+});
+$("#formInfoPersonal").submit(function () {
+    let correo = $("#txtCorreo").val();
+    let telefono = $("#txtTelefono").val();
+    let nombres = $("#txtNombres").val();
+    let apellidos = $("#txtApellidos").val();
+    if(correo != "" || telefono != "" || nombres != "" || apellidos != ""){
+        error = "";
+        if(telefono != ""){
+            if(!$.isNumeric(telefono)){
+                error += "El campo telefono solo debe incluir números.\n";
+            }
+        }
+        if(nombres != ""){
+            if(!/^[A-Za-záéíóuÁÉÍÓÚ]+(\s[A-Za-záéíóuÁÉÍÓÚ]+)*$/.test(nombres)){
+                error += "El campo nombres esta incorrecto.\n";
+            }
+        }
+        if(apellidos != ""){
+            if(!/^[A-Za-záéíóuÁÉÍÓÚ]+(\s[A-Za-záéíóuÁÉÍÓÚ]+)*$/.test(apellidos)){
+                error += "El campo apellidos esta incorrecto.\n";
+            }
+        }
+        if(error != ""){
+            alert(error);
+            return false;
+        }
+        var datos = $("#formInfoPersonal").serializeArray();
         $.when(
             $.ajax({
-            type: "GET",
-            url: "resources/php/capaNegocios/configuracionPrivacidad.php",
+            type: "POST",
+            url: "resources/php/capaNegocios/configuracionCambiarInfo.php",
+            data: datos,
             contentType: "application/x-www-form-urlencoded",
             success: function(response)
             {
-              console.log(response);
+                if(response == 1){
+                    alert("Los cambios solicitados ya estan guardados.");
+                }
+                else{
+                    if(nombres != "")
+                        $("#welcome").text("Bienvenido: "+nombres);
+                    $("#txtCorreo").val("");
+                    $("#txtTelefono").val("");
+                    $("#txtNombres").val("");
+                    $("#txtApellidos").val("");
+                    alert("El cambio se ha realizado con exito.");
+                }
             },
             error: function( jqXHR, textStatus, errorThrown ) {
                 if (jqXHR.status === 0) {
@@ -79,75 +117,24 @@ $(document).ready( function() {
         })
         ).done(
             function () {
-
-            }
-        ); 
-    });
-   
-    $('#formCC').submit(function () {
-        let contra1 = $('#txtContra1').val();
-        let contra2 = $('#txtContra2').val();
-        if(contra1.length >= 8){
-            if(contra1 == contra2){
-                var datos = $("#formCC").serializeArray();
-                $.when(
-                    $.ajax({
-                    type: "POST",
-                    url: "resources/php/capaNegocios/configuracionCambiarContra.php",
-                    data: datos,
-                    contentType: "application/x-www-form-urlencoded",
-                    success: function(response)
-                    {
-                        console.log(response);
-                    },
-                    error: function( jqXHR, textStatus, errorThrown ) {
-                        if (jqXHR.status === 0) {
-                          console.log('Not connect: Verify Network.');
-                        } else if (jqXHR.status == 404) {
-                          console.log('Requested page not found [404]');
-                        } else if (jqXHR.status == 500) {
-                          console.log('Internal Server Error [500].');
-                        } else if (textStatus === 'parsererror') {
-                          console.log('Requested JSON parse failed.');
-                        } else if (textStatus === 'timeout') {
-                          console.log('Time out error.');
-                        } else if (textStatus === 'abort') {
-                          console.log('Ajax request aborted.');
-                        } else {
-                          console.log('Uncaught Error: ' + jqXHR.responseText);
-                        }
-                        salida = false;
-                    }
-                })
-                ).done(
-                    function () {
-                        return false;
-                    }
-                ); 
                 return false;
             }
-            else{
-                alert('La contraseña debe coincidir en ambos campos.');
-            }
-        }
-        else{
-            alert('La contraseña debe tener minimo 8 caracteres.');
-        }
-    });
-
-
+        ); 
+    }
+    else{
+        alert("Los campos requeridos estan en blanco. Debe de llenar al menos 1.");
+    }
+    return false;        
 });
-$("#formInfoPersonal").submit(function () {
-    var datos = $("#formInfoPersonal").serializeArray();
+$('#cbPrivacidad').click(function () {
     $.when(
         $.ajax({
-        type: "POST",
-        url: "resources/php/capaNegocios/configuracionCambiarInfo.php",
-        data: datos,
+        type: "GET",
+        url: "resources/php/capaNegocios/configuracionPrivacidad.php",
         contentType: "application/x-www-form-urlencoded",
         success: function(response)
         {
-            console.log(response);
+            alert("Se han modificado la privacidad de sus datos.");
         },
         error: function( jqXHR, textStatus, errorThrown ) {
             if (jqXHR.status === 0) {
@@ -170,9 +157,59 @@ $("#formInfoPersonal").submit(function () {
     })
     ).done(
         function () {
-            return false;
+
         }
     ); 
-    return false;        
 });
-
+$('#formCC').submit(function () {
+    let contra1 = $('#txtContra1').val();
+    let contra2 = $('#txtContra2').val();
+    if(contra1.length >= 8 && contra2.length >= 8){
+        if(contra1 == contra2){
+            var datos = $("#formCC").serializeArray();
+            $.when(
+                $.ajax({
+                type: "POST",
+                url: "resources/php/capaNegocios/configuracionCambiarContra.php",
+                data: datos,
+                contentType: "application/x-www-form-urlencoded",
+                success: function(response)
+                {
+                    $('#txtContra1').val("");
+                    $('#txtContra2').val("");
+                    alert("La contraseña se ha cambiado con exito.");
+                },
+                error: function( jqXHR, textStatus, errorThrown ) {
+                    if (jqXHR.status === 0) {
+                      console.log('Not connect: Verify Network.');
+                    } else if (jqXHR.status == 404) {
+                      console.log('Requested page not found [404]');
+                    } else if (jqXHR.status == 500) {
+                      console.log('Internal Server Error [500].');
+                    } else if (textStatus === 'parsererror') {
+                      console.log('Requested JSON parse failed.');
+                    } else if (textStatus === 'timeout') {
+                      console.log('Time out error.');
+                    } else if (textStatus === 'abort') {
+                      console.log('Ajax request aborted.');
+                    } else {
+                      console.log('Uncaught Error: ' + jqXHR.responseText);
+                    }
+                    salida = false;
+                }
+            })
+            ).done(
+                function () {
+                    return false;
+                }
+            ); 
+        }
+        else{
+            alert('La contraseña debe coincidir en ambos campos.');
+        }
+    }
+    else{
+        alert('La contraseña debe tener minimo 8 caracteres y max 20 caracteres.');
+    }
+    return false;
+});

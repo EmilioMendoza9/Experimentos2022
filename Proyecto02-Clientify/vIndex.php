@@ -1,5 +1,8 @@
 <?php
 session_start();
+if(isset($_SESSION['idUsuario'])){
+    header('Location:/Experimentos/Proyecto02-Clientify/vPrincipal.php');
+}
 require_once('./resources/php/clientifyApi.php');
 ?>
 <!DOCTYPE html>
@@ -17,9 +20,7 @@ require_once('./resources/php/clientifyApi.php');
 
 
 <body>
-    <header class="clearfix border p-2">
-    
-    </header>
+    <header class="clearfix border p-2"></header>
     <?php
         if(isset($_SESSION['idUsuario'])){
             echo('<h3>Bienvenido: '.$_SESSION['nombresUsuario'].'</h3>');

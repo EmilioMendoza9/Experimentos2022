@@ -1,5 +1,8 @@
 <?php
 session_start();
+if(isset($_SESSION['idUsuario'])){
+    header('Location:/Experimentos/Proyecto02-Clientify/vPrincipal.php');
+}
 require_once('./resources/php/clientifyApi.php');
 ?>
 <!DOCTYPE html>
@@ -14,9 +17,11 @@ require_once('./resources/php/clientifyApi.php');
     <script src="resources/js/registrar.js"></script>
     <title>Registrar usuario</title>
 </head>
+
+
+
 <body>
-    <header>
-    </header>
+    <header></header>
     <main>
         <article class="d-flex justify-content-center">
             <form class="col-4 bg-secondary text-center rounded-3 mt-5 p-5 pt-3" id="formRegistrar" method="POST">

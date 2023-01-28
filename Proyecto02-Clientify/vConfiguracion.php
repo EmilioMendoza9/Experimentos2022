@@ -1,5 +1,8 @@
 <?php
 session_start();
+if(!($_SESSION['idUsuario'])){
+    header('Location:/Experimentos/Proyecto02-Clientify/vIndex.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -30,12 +33,12 @@ session_start();
             <h3 class="fw-bold">Datos personales</h3>
             <div class="d-flex justify-content-center">
                 <div>
-                    <input type="text" class="col-9 mb-3 fs-5" placeholder="Correo" name="txtCorreo" id="txtCorreo">
-                    <input type="text" class="col-9 mb-3 fs-5" placeholder="Telefono" name="txtTelefono" id="txtTelefono">
+                    <input type="email" class="col-9 mb-3 fs-5" placeholder="Correo" name="txtCorreo" id="txtCorreo" minlength="4" maxlength="50">
+                    <input type="text" class="col-9 mb-3 fs-5" placeholder="Telefono" name="txtTelefono" id="txtTelefono" minlength="10" maxlength="15">
                 </div>
                 <div>
-                    <input type="text" class="col-9 mb-3 fs-5" placeholder="Nombres" name="txtNombres" id="txtNombres">
-                    <input type="text" class="col-9 mb-3 fs-5" placeholder="Apellidos" name="txtApellidos" id="txtApellidos">
+                    <input type="text" class="col-9 mb-3 fs-5" placeholder="Nombres" name="txtNombres" id="txtNombres" minlength="3" maxlength="50">
+                    <input type="text" class="col-9 mb-3 fs-5" placeholder="Apellidos" name="txtApellidos" id="txtApellidos" minlength="3" maxlength="50">
                 </div>
             </div>
             <div class="mt-3">
@@ -47,8 +50,8 @@ session_start();
         -->
         <form action="" id="formCC" method="POST" class="col-4 text-center rounded-3 mt-3 p-5 pt-3 mx-auto">
             <h3 class="fw-bold">Cambiar contraseña</h3>
-            <input type="password" class="col-9 mb-3 fs-5" placeholder="Contraseña nueva" name="txtContra1" id="txtContra1">
-            <input type="password" class="col-9 mb-3 fs-5" placeholder="Repetir contraseña nueva" name="txtContra2" id="txtContra2">
+            <input type="password" class="col-9 mb-3 fs-5" placeholder="Contraseña nueva" name="txtContra1" id="txtContra1" minlength="8" maxlength="20">
+            <input type="password" class="col-9 mb-3 fs-5" placeholder="Repetir contraseña nueva" name="txtContra2" id="txtContra2" minlength="8" maxlength="20">
             <div class="mx-auto">
                 <label class="container col-6">Mostrar contraseña
                     <input type="checkbox" id="cbMostrarContra">

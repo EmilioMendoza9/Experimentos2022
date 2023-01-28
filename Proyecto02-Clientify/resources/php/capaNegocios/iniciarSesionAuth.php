@@ -10,7 +10,6 @@ $clave = $_POST['txtContra'];
 $usuarioValido = $usuarioObj->consultarUsuario($correo, $correo);
 if(isset($usuarioValido) && count($usuarioValido) == 1){
     if(password_verify($clave, $usuarioValido[0]["clave"])){
-    //if($clave == $usuarioValido[0]["clave"]){
         session_unset();
         session_start();
         $_SESSION['idUsuario'] = $usuarioValido[0]['id'];
