@@ -14,7 +14,6 @@ require_once('./resources/php/clientifyApi.php');
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <link rel="stylesheet" href="resources/css/miEstilo.css">
-    <script src="resources/js/iniciarSesion.js"></script>
     <title>Inicio sesión</title>
 </head>
 
@@ -24,10 +23,10 @@ require_once('./resources/php/clientifyApi.php');
     <header></header>
     <main>
         <article class="d-flex justify-content-center">
-            <form action="resources/php/capaNegocios/iniciarSesionAuth.php" id="formInicio" method="POST" class="col-4 bg-secondary text-center rounded-3 mt-5 p-5 pt-3">
+            <form action="" id="formInicio" method="POST" class="col-4 bg-secondary text-center rounded-3 mt-5 p-5 pt-3">
                 <h3 class="fw-bold text-white">INICIO DE SESIÓN</h3>
                     <!--  <input type="hidden" name="token" value="<?=$_SESSION["token"]?>"> -->
-                <input type="email" class="col-9 mb-3" placeholder="Correo" name="txtCorreo" id="txtCorreo" minlength="4" maxlength="50">
+                <input type="text" class="col-9 mb-3" placeholder="Correo" name="txtCorreo" id="txtCorreo" minlength="4" maxlength="50">
                 <input type="password" class="col-9 mb-3" placeholder="Contraseña" name="txtContra" id="txtContra" minlength="8" maxlength="20">
                 <div class="mx-auto">
                     <input type="checkbox" id="cbMostrarContra"><label for="">Mostrar contraseña</label>
@@ -45,5 +44,6 @@ require_once('./resources/php/clientifyApi.php');
     </main>
     <footer>
     </footer>
+    <script src="resources/js/iniciarSesion.js"></script>
 </body>
 </html>

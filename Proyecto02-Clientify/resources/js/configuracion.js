@@ -1,16 +1,4 @@
-$(document).ready( function() {
-
-    $('#cbMostrarContra').click( function () {
-        if($('#txtContra1').attr('type') == "password"){
-            $('#txtContra1').attr('type', 'text');
-            $('#txtContra2').attr('type', 'text');
-        }
-        else{
-            $('#txtContra1').attr('type', 'password');
-            $('#txtContra2').attr('type', 'password');
-        }
-    });
-
+$(document).ready(function() {
     $.when(
         $.ajax({
         type: "GET",
@@ -47,6 +35,16 @@ $(document).ready( function() {
     ).done(
         
     );
+});
+$('#cbMostrarContra').click(function () {
+    if($('#txtContra1').attr('type') == "password"){
+        $('#txtContra1').attr('type', 'text');
+        $('#txtContra2').attr('type', 'text');
+    }
+    else{
+        $('#txtContra1').attr('type', 'password');
+        $('#txtContra2').attr('type', 'password');
+    }
 });
 $("#formInfoPersonal").submit(function () {
     let correo = $("#txtCorreo").val();
@@ -162,10 +160,25 @@ $('#cbPrivacidad').click(function () {
     ); 
 });
 $('#formCC').submit(function () {
+    var error = "";
     let contra1 = $('#txtContra1').val();
     let contra2 = $('#txtContra2').val();
-    if(contra1.length >= 8 && contra2.length >= 8){
+    if(contra1.length >= 8 && contra1.length < 20){
+        /* if(/^[0-9]+$/.test(contra1)){
+            alert('1 '+ contra1);
+        }
+        if(/^[A-Z]+$/.test(contra1)){
+            alert('2 '+ contra1);
+        }
+        if(/^[a-z]+$/.test(contra1)){
+            alert('3 '+ contra1);
+        }
+        if(/^[\s!"#$%&'()*+,-.\/:;<=>?@\\^_`|~]+$/.test(contra1)){
+            alert('4 '+ contra1);
+        }
+        return false; */
         if(contra1 == contra2){
+
             var datos = $("#formCC").serializeArray();
             $.when(
                 $.ajax({
@@ -205,11 +218,14 @@ $('#formCC').submit(function () {
             ); 
         }
         else{
-            alert('La contraseña debe coincidir en ambos campos.');
+            error += 'La contraseña debe coincidir en ambos campos.\n';
         }
     }
     else{
-        alert('La contraseña debe tener minimo 8 caracteres y max 20 caracteres.');
+        error += 'La contraseña debe tener minimo 8 caracteres y max 20 caracteres.\n';
+    }
+    if(error != ""){
+        alert(error);
     }
     return false;
 });
