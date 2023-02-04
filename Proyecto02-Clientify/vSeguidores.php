@@ -20,6 +20,7 @@ $relacion = new relacionDatos('localhost','root','','portalingeniasi');
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="resources/css/miEstilo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Seguidores</title>
 </head>
 
@@ -51,7 +52,7 @@ $relacion = new relacionDatos('localhost','root','','portalingeniasi');
             ');
             }
         ?>
-        <table class="w-75 bg-success bg-opacity-50 mx-auto mt-3 rounded rounded-3">
+        <table class="w-75 mx-auto mt-3 rounded rounded-3">
             <tbody>
                 <?php
                     $seguidores = $relacion->seguidores($_SESSION['idEmpresa'], $_SESSION['razonSocial']);
@@ -66,7 +67,7 @@ $relacion = new relacionDatos('localhost','root','','portalingeniasi');
                     ');
                     for ($i=0; $i < count($seguidores); $i++) { 
                         if($seguidores[$i]['correo'] == $_SESSION['correoUsuario']){
-                            echo ('<tr class="border-bottom">
+                            echo ('<tr class="border-bottom bg-success bg-opacity-50">
                                 <td class="py-4 text-center fw-bold">' . $seguidores[$i]['nombres'] .' '. $seguidores[$i]['apellidos'] . '</td>
                                 <td class="py-4 text-center">' . $seguidores[$i]['telefono'] . '</td>
                                 <td class="py-4 text-center">' . $seguidores[$i]['correo'] . '</td>
@@ -78,12 +79,22 @@ $relacion = new relacionDatos('localhost','root','','portalingeniasi');
                         }
                         for ($i=0; $i < count($seguidores); $i++) { 
                             if($seguidores[$i]['correo'] != $_SESSION['correoUsuario']){
-                                echo ('<tr class="border-bottom">
-                                    <td class="py-4 text-center fw-bold">' . $seguidores[$i]['nombres'] .' '. $seguidores[$i]['apellidos'] . '</td>
+                                if($seguidores[$i]['datosPrivados'] == 'N'){
+                                    echo ('<tr class="border-bottom bg-success bg-opacity-50">
+                                    <td class="py-4 text-center fw-bold">¡¡Datos privados!!  ' . $seguidores[$i]['nombres'] .' '. $seguidores[$i]['apellidos'] . '</td>
                                     <td class="py-4 text-center">' . $seguidores[$i]['telefono'] . '</td>
                                     <td class="py-4 text-center">' . $seguidores[$i]['correo'] . '</td>
                                     <td class="py-4 text-center">' . $seguidores[$i]['fechaNacimiento'] . '</td>
-                                ');    
+                                    ');    
+                                }
+                                else{
+                                    echo ('<tr class="border-bottom bg-success bg-opacity-50">
+                                        <td class="py-4 text-center fw-bold">' . $seguidores[$i]['nombres'] .' '. $seguidores[$i]['apellidos'] . '</td>
+                                        <td class="py-4 text-center">' . $seguidores[$i]['telefono'] . '</td>
+                                        <td class="py-4 text-center">' . $seguidores[$i]['correo'] . '</td>
+                                        <td class="py-4 text-center">' . $seguidores[$i]['fechaNacimiento'] . '</td>
+                                    ');    
+                                }
                                 if($seguidores[$i]['origen'] == $_SESSION['razonSocial']){
                                     echo('<td class="py-4 text-center">Cliente registrado</td>');
                                 }
@@ -95,8 +106,77 @@ $relacion = new relacionDatos('localhost','root','','portalingeniasi');
                         }
                     }
                 ?>  
+                <div>
+                    <!-- OPCION 1 -->
+                <tr class="border-bottom bg-danger bg-opacity-50">
+                    <td class="py-3 text-center fw-bold">
+                        <p>Carlos Emilio Mendoza Sarmiento</p>
+                        <div class="d-flex justify-content-center">
+                            <i class="fa fa-warning pe-1" style="font-size:18px;color:red"></i>
+                            <p><small>Este cliente solicito no utilizar sus datos</small></p>
+                        </div>
+                    </td>
+                    <td class="py-4 text-center">- - -</td>
+                    <td class="py-4 text-center">Emilio.mendoza@ingeniasi.com</td>
+                    <td class="py-4 text-center">- - -</td>
+                    <td class="py-4 text-center">Cliente registrado</td>
+                </tr>
+                <!-- OPCION 2 -->
+                <tr class="border-bottom bg-warning bg-opacity-50">
+                    <td class="py-3 text-center fw-bold">
+                        <p>Carlos Emilio Mendoza Sarmiento</p>
+                        <div class="d-flex justify-content-center">
+                            <i class="fa fa-warning pe-1" style="font-size:18px;color:red"></i>
+                            <p><small>Este cliente solicito no utilizar sus datos</small></p>
+                        </div>
+                    </td>
+                    <td class="py-4 text-center">- - -</td>
+                    <td class="py-4 text-center">Emilio.mendoza@ingeniasi.com</td>
+                    <td class="py-4 text-center">- - -</td>
+                    <td class="py-4 text-center">Cliente registrado</td>
+                </tr>
+                <!-- OPCION 3 -->
+                <tr class="border-bottom bg-danger bg-opacity-50">
+                    <td class="py-3 text-center fw-bold" colspan="99">
+                        <p>Emilio.mendoza@ingeniasi.com</p>
+                        <div class="d-flex justify-content-center">
+                            <i class="fa fa-warning pe-1" style="font-size:18px;color:red"></i>
+                            <p><small>Este cliente solicito no utilizar sus datos</small></p>
+                        </div>
+                    </td>
+                </tr>
+                <!-- OPCION 4 -->
+                <tr class="border-bottom bg-danger bg-opacity-50">
+                    <td class="py-3 text-center fw-bold">
+                        <p>Emilio.mendoza@ingeniasi.com</p>
+                        <div class="d-flex justify-content-center">
+                            <i class="fa fa-warning pe-1" style="font-size:18px;color:red"></i>
+                            <p><small>Este cliente solicito no utilizar sus datos</small></p>
+                        </div>
+                    </td>
+                    <td class="py-4 text-center"></td>
+                    <td class="py-4 text-center"></td>
+                    <td class="py-4 text-center"></td>
+                    <td class="text-center">Cliente registrado</td>
+                </tr>
+                <!-- OPCION 5 -->
+                <tr class="border-bottom bg-danger bg-opacity-50">
+                    <td class="py-4 text-center fw-bold">
+                        <p>Emilio.mendoza@ingeniasi.com</p>
+                    </td>
+                    <td>                            
+                    <div class="d-flex justify-content-center">
+                        <i class="fa fa-warning pe-1" style="font-size:18px;color:red"></i>
+                        <strong><p><small>Este cliente solicito no utilizar sus datos</small></p></td></strong>
+                    </div>
+                    <td></td>
+                    <td></td>
+                    <td class="py-4 text-center">Cliente registrado</td>
+                </tr>
+                </div>
             </tbody>
         </table>
+        <button id="ocultarClientesPrivados" class="mx-auto">Ocultar clientes con datos privados</button>
     </main>
     <script src="resources/js/principal.js"></script>
     <script>

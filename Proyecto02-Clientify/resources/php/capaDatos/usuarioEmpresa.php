@@ -42,13 +42,15 @@ class relacionDatos extends baseDatos{
     public function seguidores($idEmpresa, $empresOrigen)
     {
         try {
-            $query = $this->link->prepare('SELECT t.id,nombres,apellidos,telefono,correo,fechaNacimiento,origen FROM matrizconfiguracion JOIN (SELECT * FROM relacionempresausuario JOIN usuario
+            $query = $this->link->prepare('SELECT t.id,nombres,apellidos,telefono,correo,fechaNacimiento,origen,datosPrivados FROM matrizconfiguracion JOIN (SELECT * FROM relacionempresausuario JOIN usuario
             ON relacionempresausuario.idUsuario = usuario.id
             WHERE idEmpresa = :idEmpresa) as t
             ON matrizconfiguracion.idUsuario = t.id
             WHERE datosPrivados = "Y"
             UNION
-            SELECT id,nombres,apellidos,telefono,correo,fechaNacimiento,origen FROM usuario 
+            SELECT usuario.id,nombres,apellidos,telefono,correo,fechaNacimiento,origen, datosPrivados FROM usuario 
+            JOIN matrizconfiguracion
+            ON usuario.id = matrizconfiguracion.idUsuario
             WHERE origen = :origen
             ');
             $query->bindParam(":idEmpresa", $idEmpresa);

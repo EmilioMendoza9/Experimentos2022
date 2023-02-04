@@ -1,17 +1,6 @@
 <?php
 require_once('conectarBD.php');
 class usuarioDatos extends baseDatos{
-    public function insertUsuario($nombre){
-        $query = $this->link->prepare("INSERT INTO Students (name, lastname, email) VALUES (:first_name, :last_name, :email)");
-        $query->bindParam(":first_name", $first_Name);
-        $query->bindParam(":last_name", $last_Name);
-        $query->bindParam(":email", $email);
-        if ($query->execute()) {
-            echo "New record created successfully";
-        } else {
-            echo "Unable to create record";
-        }
-    }
 
     public function consultarUsuario($correo, $telefono){
         try {
